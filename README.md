@@ -9,7 +9,7 @@ See [Proptech Tutorial IPython Notebook](./data-science/proptech/os-data-hub-api
 A Jupyter Notebook providing a data science pipeline in Python to leverage data insights through the integration of OS Data Hub APIs with other government data services from the Office for National Statistics and HM Land Registry.
 
 <p align="center">
-  <img width="700" src="data-science/proptech/images/southampton-local-authority-district-median-price-paid-deciles.png" alt="Southampton Local Authority District Median Price Paid Deciles">
+  <img width="700" style="border:1px solid grey" src="data-science/proptech/images/southampton-local-authority-district-median-price-paid-deciles.png" alt="Southampton Local Authority District Median Price Paid Deciles">
 </p>
 
 ## Web Development: Automated Open Data Download
@@ -33,7 +33,7 @@ How to create a web application that will let users find nearby parks, woodland 
 See [Find My Nearest](./web-development/find-my-nearest/).
 
 <p align="center">
-  <img width="700" src="web-development/find-my-nearest/media/find-my-nearest.png" alt="Find My Nearest tutorial web app">
+  <img width="700" style="border:1px solid grey" src="web-development/find-my-nearest/media/find-my-nearest.png" alt="Find My Nearest tutorial web app">
 </p>
 
 
@@ -44,7 +44,7 @@ How to build an interactive locator, to help users find features on a map. At Or
 See [National Parks Locator](./web-development/national-parks-locator/).
 
 <p align="center">
-  <img width="700" src="web-development/national-parks-locator/media/national-parks-locator.png" alt="National Parks Locator tutorial web app">
+  <img width="700" style="border:1px solid grey" src="web-development/national-parks-locator/media/national-parks-locator.png" alt="National Parks Locator tutorial web app">
 </p>
 
 ## Web Development: Percent Built On
@@ -54,7 +54,7 @@ We'll develop a web app that lets users draw a polygon, then calculates what per
 See [Percent Built On](./web-development/percent-built-on/).
 
 <p align="center">
-  <img width="700" src="web-development/percent-built-on/media/percent-built-on.png" alt="Percent Built On tutorial web app">
+  <img width="700" style="border:1px solid grey" src="web-development/percent-built-on/media/percent-built-on.png" alt="Percent Built On tutorial web app">
 </p>
 
 
@@ -65,5 +65,6 @@ Building a map-based scroll story - a powerful way to add location context to ot
 See [Percent Built On](./web-development/scroll-story/).
 
 <p align="center">
-  <img width="700" src="web-development/scroll-story/media/os-scroll-story.png" alt="Percent Built On tutorial web app">
+  <img width="700" style="border:1px solid grey" src="web-development/scroll-story/media/os-scroll-story.png" alt="Percent Built On tutorial web app">
 </p>
+
