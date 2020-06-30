@@ -1,0 +1,26 @@
+{
+  "name": "automating-open-data-downloads",
+  "version": "1.0.0",
+  "description": "A NodeJS app to automatically download and extract Ordnance Survey open data from the OS Downloads API",
+  "main": "app.js",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "extract-zip": "^2.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ordnance",
+    "survey",
+    "os",
+    "open",
+    "data",
+    "download",
+    "spatial",
+    "dem"
+  ],
+  "author": "@johnx25bd",
+  "license": "MIT"
+}

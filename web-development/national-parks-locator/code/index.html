@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>OS Tutorial | National Parks Locator</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" type="image/x-icon" href="./assets/img/favicon.ico" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.2/leaflet.css"
+    />
+    <link rel="stylesheet" href="./assets/css/style.min.css" />
+
+    <style>
+      .panel-header h2 {
+        margin: 0px;
+      }
+
+      .np-arrow {
+        height: 25px;
+        margin-bottom: -5px;
+        margin-right: 10px;
+        padding-left: 10px;
+        transition: transform 200ms;
+        transform: unset;
+      }
+
+      .highlight .np-arrow {
+        transition: transform 200ms;
+        transform: rotate(23deg);
+      }
+
+      span.np-name {
+        cursor: pointer;
+      }
+
+      span.np-name:hover {
+        color: #228b3b;
+      }
+
+      li.highlight {
+        transition: background-color 200ms;
+        background-color: #f5f5f5;
+      }
+
+      li:not(.highlight) {
+        transition: background-color 200ms;
+        background-color: unset;
+      }
+
+      .label i {
+        position: absolute;
+        right: 20px;
+        opacity: 0.1;
+        font-size: 18px;
+        transition: opacity 200ms;
+      }
+
+      .highlight i {
+        opacity: 0.5;
+        transition: opacity 200ms;
+      }
+
+      .highlight i:hover {
+        opacity: 1;
+        cursor: pointer;
+        color: #228b3b !important;
+        transition: opacity 200ms;
+      }
+
+      .osel-sliding-side-panel
+        ul.layers
+        .layer
+        .layer-element[data-type="list-item"]
+        div.label {
+        margin-left: unset;
+        padding-left: 20px;
+        cursor: default;
+      }
+
+      .osel-sliding-side-panel .scroller-no-tabs {
+        /* top: 100px !important; */
+      }
+    </style>
+  </head>
+  <body style="background: #ddd;">
+    <div class="osel-sliding-side-panel panel-left">
+      <div class="panel-toggle">
+        <div class="toggle-handle" aria-label="Toggle panel"></div>
+      </div>
+      <div class="panel-content">
+        <div class="panel-header">
+          <h2>UK National Parks</h2>
+          <!-- <img class="np-logo-main" src="./assets/img/NP-logo-wt.png" /> -->
+        </div>
+        <div class="scroller-no-tabs">
+          <ul class="layers"></ul>
+        </div>
+      </div>
+    </div>
+    <div class="osel-sliding-side-panel panel-right">
+      <div class="panel-close">
+        <i class="material-icons" aria-label="Close panel">close</i>
+      </div>
+      <div class="panel-header">Properties</div>
+      <div class="scroller-no-tabs">
+        <div class="osel-feature-properties"></div>
+      </div>
+    </div>
+    <div id="map" class="osel-map" tabindex="0"></div>
+
+    <!-- Core Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.devbridge-autocomplete/1.4.7/jquery.autocomplete.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.5.0/proj4.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rangeslider.js/2.3.1/rangeslider.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slideReveal/1.1.2/jquery.slidereveal.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/add-clear@2.0.7/addclear.min.js"></script>
+    <!-- Mapping Library (+ Plugins) -->
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-omnivore/0.3.4/leaflet-omnivore.min.js"></script>
+    <!-- OSEL Framework -->
+    <script src="./assets/js/bundle.min.js"></script>
+
+    <script src="./js/tutorial.js"></script>
+  </body>
+</html>

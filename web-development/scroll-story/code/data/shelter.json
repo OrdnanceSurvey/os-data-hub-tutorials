@@ -1,0 +1,48 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID": 3972016,
+        "TOID": "osgb1000039291782",
+        "FeatureCode": 10021,
+        "Version": 4,
+        "VersionDate": "2009/10/22 00:00:00",
+        "Theme": "Buildings",
+        "ThemeCount": 1,
+        "CalculatedAreaValue": 26,
+        "ChangeDate": "2009/09/29 00:00:00",
+        "ReasonForChange": "Attributes",
+        "ChangeHistoryCount": 3,
+        "DescriptiveGroup": "Building",
+        "DescriptiveGroupCount": 1,
+        "DescriptiveTerm": null,
+        "DescriptiveTermCount": null,
+        "Make": "Manmade",
+        "PhysicalLevel": 50,
+        "PhysicalPresence": null,
+        "broken": "false",
+        "style_code": 34,
+        "source_filename": "4365278-NN1570",
+        "Shape_Length": 21,
+        "Shape_Area": 26
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [-5.00348154, 56.79667965],
+              [-5.00349789, 56.79667926],
+              [-5.00350077, 56.79671514],
+              [-5.00339449, 56.7967177],
+              [-5.00339162, 56.79668182],
+              [-5.00348154, 56.79667965]
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

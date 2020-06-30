@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="42" height="188" viewBox="5 0 42 188">
+    <title>panel-tab</title>
+    <defs>
+        <filter id="a" color-interpolation-filters="sRGB">
+            <feFlood flood-opacity="0.2" flood-color="#000" result="flood"/>
+            <feComposite in="flood" in2="SourceGraphic" operator="in" result="composite1"/>
+            <feGaussianBlur in="composite1" stdDeviation="4" result="blur"/>
+            <feOffset dx="0" dy="0" result="offset"/>
+            <feComposite in="SourceGraphic" in2="offset" result="composite2"/>
+        </filter>
+    </defs>
+    <g transform="translate(19.962 -108.126)" fill="none" fill-rule="evenodd" filter="url(#a)">
+        <path d="M-15.962 285.595V119.853C-13.998 134-9.177 148.598.855 154.273l10.032 5.675c5.79 4.181 8.526 9.673 9.075 15.123.035.343 0 .674 0 1.04v54.008c0 .405.032.764 0 1.145-.527 6.264-3.409 11.291-9.075 14.236L.855 251.175c-10.032 5.675-14.832 15.486-16.817 34.42z" fill="#2c3e50"/>
+    </g>
+</svg>

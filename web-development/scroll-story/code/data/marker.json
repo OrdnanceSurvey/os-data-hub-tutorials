@@ -1,0 +1,39 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "title": "Ben Nevis",
+        "OBJECTID": 358277,
+        "TOID": "osgb1000000876072952",
+        "FeatureCode": 10197,
+        "Version": 2,
+        "VersionDate": "2008/04/01 00:00:00",
+        "Theme": "Terrain And Height",
+        "ThemeCount": 1,
+        "AccuracyOfPosition": "8.0m",
+        "ChangeDate": "2008/03/11 00:00:00",
+        "ReasonForChange": "New",
+        "ChangeHistoryCount": 1,
+        "DescriptiveGroup": "Terrain And Height",
+        "DescriptiveGroupCount": 1,
+        "DescriptiveTerm": "Spot Height",
+        "DescriptiveTermCount": 1,
+        "HeightAboveDatum": 1344,
+        "AccuracyOfHeightAboveDatum": "8.0m",
+        "HeightAboveGroundLevel": null,
+        "AccuracyOfHeightAboveGroundLvl": null,
+        "Make": null,
+        "PhysicalLevel": 50,
+        "PhysicalPresence": null,
+        "style_code": 1,
+        "source_filename": "4365278-NN1570"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-5.003536775007831, 56.7968580917981]
+      }
+    }
+  ]
+}

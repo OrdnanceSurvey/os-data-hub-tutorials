@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+    <title>nav-compass</title>
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <polygon fill="#ddd" transform="translate(12, 18) scale(1, -1) translate(-12, -18)" points="12 12 16 24 8 24"></polygon>
+        <polygon fill="#d40058" points="12 0 16 12 8 12"></polygon>
+    </g>
+</svg>

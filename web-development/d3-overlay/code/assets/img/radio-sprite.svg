@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48" height="72" viewBox="0 0 48 72">
+    <defs>
+        <filter id="outer-glow">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
+        </filter>
+    </defs>
+    <svg id="radio-checked" width="24" height="24" viewBox="0 0 24 24" x="0" y="0">
+        <circle cx="12" cy="12" r="8.5" stroke="#2979af"/>
+        <circle cx="12" cy="12" r="8" fill="#fff"/>
+        <circle cx="12" cy="12" r="5" fill="#2979af"/>
+    </svg>
+    <svg id="radio-unchecked" width="24" height="24" viewBox="0 0 24 24" x="24" y="0">
+        <circle cx="12" cy="12" r="8.5" fill="#333"/>
+        <circle cx="12" cy="12" r="7.5" fill="#fff"/>
+    </svg>
+    <svg id="radio-checked-focus" width="24" height="24" viewBox="0 0 24 24" x="0" y="24">
+        <circle style="filter:url(#outer-glow)" cx="12" cy="12" r="9.5" fill="#2979af"/>
+        <circle cx="12" cy="12" r="8.5" stroke="#2979af"/>
+        <circle cx="12" cy="12" r="8" fill="#fff"/>
+        <circle cx="12" cy="12" r="5" fill="#2979af"/>
+    </svg>
+    <svg id="radio-unchecked-focus" width="24" height="24" viewBox="0 0 24 24" x="24" y="24">
+        <circle style="filter:url(#outer-glow)" cx="12" cy="12" r="9.5" fill="#2979af"/>
+        <circle cx="12" cy="12" r="8.5" fill="#333"/>
+        <circle cx="12" cy="12" r="7.5" fill="#fff"/>
+    </svg>
+    <svg id="radio-checked-disabled" width="24" height="24" viewBox="0 0 24 24" x="0" y="48">
+        <circle cx="12" cy="12" r="8.5" stroke="#97bdd6"/>
+        <circle cx="12" cy="12" r="8" fill="#fff"/>
+        <circle cx="12" cy="12" r="5" fill="#97bdd6"/>
+    </svg>
+    <svg id="radio-unchecked-disabled" width="24" height="24" viewBox="0 0 24 24" x="24" y="48">
+        <circle cx="12" cy="12" r="8.5" fill="#bebebe"/>
+        <circle cx="12" cy="12" r="7.5" fill="#eee"/>
+    </svg>
+</svg>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>OS Tutorial | Percent Built On</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" type="image/x-icon" href="../assets/img/favicon.ico" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v1.9.1/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.0.9/mapbox-gl-draw.css"
+      type="text/css"
+    />
+
+    <link rel="stylesheet" href="./assets/css/style.min.css" />
+    <link rel="stylesheet" href="./css/tutorial.css" />
+  </head>
+
+  <body>
+    <div id="map" class="osel-map"></div>
+    <div class="osel-sliding-side-panel panel-left">
+      <div class="panel-toggle">
+        <div class="toggle-handle" aria-label="Toggle panel"></div>
+      </div>
+      <div class="panel-content">
+        <div class="panel-header">
+          Percent Built On
+        </div>
+        <div class="scroller-no-tabs">
+          <div class="contents">
+            <p>Calculate what percentage of an area is covered by buildings.</p>
+            <p>
+              Use the polygon tool - upper right on the map - to draw the
+              geometry you'd like to analyse.
+            </p>
+          </div>
+          <div class="results">
+            <p id="percent-built"><span>. . .</span>%</p>
+            <p class="result-label" style="display: none;">built on!</p>
+          </div>
+          <button
+            id="fetch-and-calculate"
+            class="osel-button osel-primary-button"
+            disabled
+          >
+            <span class="find">Fetch & Calculate!</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="osel-sliding-side-panel panel-right">
+      <div class="panel-close">
+        <i class="material-icons" aria-label="Close panel">close</i>
+      </div>
+      <div class="panel-header">Properties</div>
+      <div class="scroller-no-tabs">
+        <div class="osel-feature-properties"></div>
+      </div>
+    </div>
+
+    <!-- Core Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.devbridge-autocomplete/1.4.7/jquery.autocomplete.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.5.0/proj4.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rangeslider.js/2.3.1/rangeslider.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slideReveal/1.1.2/jquery.slidereveal.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/add-clear@2.0.7/addclear.min.js"></script>
+
+    <!-- Mapping Library (+ Plugins & Dependencies) -->
+    <script src="https://api.mapbox.com/mapbox-gl-js/v1.9.1/mapbox-gl.js"></script>
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.0.9/mapbox-gl-draw.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Turf.js/5.1.5/turf.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.15/lodash.core.js"></script>
+
+    <!-- OSEL Framework -->
+    <script src="./assets/js/bundle.min.js"></script>
+
+    <!-- Demo -->
+    <script src="./js/config.js"></script>
+    <script src="./js/tutorial.js"></script>
+  </body>
+</html>
