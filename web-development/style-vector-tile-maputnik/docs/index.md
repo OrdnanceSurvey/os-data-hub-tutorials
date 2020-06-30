@@ -1,5 +1,3 @@
-# Edit OS Vector Tile Styles in Maputnik
-
 Open https://maputnik.github.io/editor/
 
 In `Data Sources`:
