@@ -25,6 +25,11 @@ Using D3.js to add an overlay of geographic features to an interactive OS Vector
 
 See [D3 Overlay](./web-development/d3-overlay/).
 
+<p align="center">
+  <img width="700" style="border:1px solid grey" src="web-development/d3-overlay/media/d3-overlay.png" alt="D3 Overlay tutorial">
+</p>
+
+
 
 ## Web Development: Find My Nearest
 
