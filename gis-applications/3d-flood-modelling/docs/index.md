@@ -4,7 +4,7 @@ products combined with third party datasets to create a rich interactive
 3D model.
 
 <p align="center">
-  <video style="outline:none" width="700" poster="/public/os-data-hub-tutorials/dist/gis-applications/3d-flood-modelling/image1.png" controls disablepictureinpicture controlslist="nodownload">
+  <video style="outline:none" width="700" poster="https://raw.githubusercontent.com/OrdnanceSurvey/os-data-hub-tutorials/master/gis-applications/3d-flood-modelling/media/image1.png" controls disablepictureinpicture controlslist="nodownload">
     <source src="/public/os-data-hub-tutorials/dist/gis-applications/3d-flood-modelling/OS_EA_Tutorial.mp4" type="video/mp4">
     Your browser does not support HTML5 video.
   </video>
@@ -66,11 +66,11 @@ those areas that are effected by flooding and therefore contains 'gaps'
 (work is underway to complete full coverage of England by 2021) -- we
 used the `Clip Raster` tool to clip the data to the relevant study area.
 
-![Clipping raster layer](/public/os-data-hub-tutorials/dist/gis-applications/3d-flood-modelling/image2.jpg)
+![Clipping raster layer](https://raw.githubusercontent.com/OrdnanceSurvey/os-data-hub-tutorials/master/gis-applications/3d-flood-modelling/media/image2.jpg)
 
 Loading the data
 ----------------
-![OS Maps API](/public/os-data-hub-tutorials/dist/gis-applications/3d-flood-modelling/image3.png)
+![OS Maps API](https://raw.githubusercontent.com/OrdnanceSurvey/os-data-hub-tutorials/master/gis-applications/3d-flood-modelling/media/image3.png)
 
 It is now time to prepare the data ready to be converted into a 3D
 model. Create a new project in ArcGIS Pro and remove any
@@ -96,7 +96,7 @@ be appropriate to include a flood related dataset. Use the Living Atlas
 Sea](https://environment.data.gov.uk/arcgis/rest/services/EA/RiskOfFloodingFromRiversAndSea/MapServer)
 layer.
 
-![EA Flood Risk Zones](/public/os-data-hub-tutorials/dist/gis-applications/3d-flood-modelling/image4.png)
+![EA Flood Risk Zones](https://raw.githubusercontent.com/OrdnanceSurvey/os-data-hub-tutorials/master/gis-applications/3d-flood-modelling/media/image4.png)
 
 Styling the data
 ----------------
@@ -105,7 +105,7 @@ We now have all our data loaded but in order to create a visually
 appealing model, it needs to be styled and some additional layers
 created.
 
-![All data unstyled in ArcGIS Pro](/public/os-data-hub-tutorials/dist/gis-applications/3d-flood-modelling/image5.png)
+![All data unstyled in ArcGIS Pro](https://raw.githubusercontent.com/OrdnanceSurvey/os-data-hub-tutorials/master/gis-applications/3d-flood-modelling/media/image5.png)
 
 Order the layers and implement the relevant settings so they match the
 following:
@@ -117,7 +117,7 @@ following:
     non-intersecting buildings -- this value matches the building colour
     from the OS Maps Outdoor theme.
 
-![Building style](/public/os-data-hub-tutorials/dist/gis-applications/3d-flood-modelling/image17.png)
+![Building style](https://raw.githubusercontent.com/OrdnanceSurvey/os-data-hub-tutorials/master/gis-applications/3d-flood-modelling/media/image17.png)
 
 2.  Risk of Flooding from Rivers and Sea: switched off once the above
     intersect is complete.
@@ -134,7 +134,7 @@ following:
 
 Your screen should now look similar to this:
 
-![All data styled](/public/os-data-hub-tutorials/dist/gis-applications/3d-flood-modelling/image6.png)
+![All data styled](https://raw.githubusercontent.com/OrdnanceSurvey/os-data-hub-tutorials/master/gis-applications/3d-flood-modelling/media/image6.png)
 
 You will probably notice at this point that the OS Maps API will
 automatically change depending on your scale. Zoom in and out and move
@@ -142,7 +142,7 @@ around your study area to see the changes. In the image below we have
 switched off the Local Building layer as this will need to be styled
 separately once the 3D model has been created.
 
-![2D close up](/public/os-data-hub-tutorials/dist/gis-applications/3d-flood-modelling/image7.png)
+![2D close up](https://raw.githubusercontent.com/OrdnanceSurvey/os-data-hub-tutorials/master/gis-applications/3d-flood-modelling/media/image7.png)
 
 3D Model
 --------
@@ -154,13 +154,13 @@ Elevation Surfaces/Ground and switch off the `WorldElevation3D/Terrain3D`
 layer. Like the previous step, zoom in and out and see how the mapbase
 automatically changes.
 
-![3D model - image 1](/public/os-data-hub-tutorials/dist/gis-applications/3d-flood-modelling/image8.png)
+![3D model - image 1](https://raw.githubusercontent.com/OrdnanceSurvey/os-data-hub-tutorials/master/gis-applications/3d-flood-modelling/media/image8.png)
 
-![3D model - image 2](/public/os-data-hub-tutorials/dist/gis-applications/3d-flood-modelling/image9.png)
+![3D model - image 2](https://raw.githubusercontent.com/OrdnanceSurvey/os-data-hub-tutorials/master/gis-applications/3d-flood-modelling/media/image9.png)
 
-![3D model - image 3](/public/os-data-hub-tutorials/dist/gis-applications/3d-flood-modelling/image10.png)
+![3D model - image 3](https://raw.githubusercontent.com/OrdnanceSurvey/os-data-hub-tutorials/master/gis-applications/3d-flood-modelling/media/image10.png)
 
-![3D model - image 4](/public/os-data-hub-tutorials/dist/gis-applications/3d-flood-modelling/image11.png)
+![3D model - image 4](https://raw.githubusercontent.com/OrdnanceSurvey/os-data-hub-tutorials/master/gis-applications/3d-flood-modelling/media/image11.png)
 
 We also want to see our Local Building layer in 3D and as we themed them
 on risk level, the ones effected by flooding should now stand out.
@@ -170,13 +170,13 @@ Feature Layer option tab. Under `Appearance` change the `Type` to `Max Height`
 `Extrusion Expression` option and enter a number in the `Expression` box
 e.g. 5.
 
-![3D model - at risk buildings - image 1](/public/os-data-hub-tutorials/dist/gis-applications/3d-flood-modelling/image12.png)
+![3D model - at risk buildings - image 1](https://raw.githubusercontent.com/OrdnanceSurvey/os-data-hub-tutorials/master/gis-applications/3d-flood-modelling/media/image12.png)
 
-![3D model - at risk buildings - image 2](/public/os-data-hub-tutorials/dist/gis-applications/3d-flood-modelling/image1.png)
+![3D model - at risk buildings - image 2](https://raw.githubusercontent.com/OrdnanceSurvey/os-data-hub-tutorials/master/gis-applications/3d-flood-modelling/media/image1.png)
 
-![3D model - at risk buildings - image 3](/public/os-data-hub-tutorials/dist/gis-applications/3d-flood-modelling/image15.png)
+![3D model - at risk buildings - image 3](https://raw.githubusercontent.com/OrdnanceSurvey/os-data-hub-tutorials/master/gis-applications/3d-flood-modelling/media/image15.png)
 
-![3D model - at risk buildings - image 4](/public/os-data-hub-tutorials/dist/gis-applications/3d-flood-modelling/image16.png)
+![3D model - at risk buildings - image 4](https://raw.githubusercontent.com/OrdnanceSurvey/os-data-hub-tutorials/master/gis-applications/3d-flood-modelling/media/image16.png)
 
 If you create a beautiful 3D model using OS data - let us know!
 
