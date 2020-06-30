@@ -62,7 +62,7 @@ See [Percent Built On](./web-development/percent-built-on/).
 
 Building a map-based scroll story - a powerful way to add location context to other content. With the OS Vector Tile API, OS Features API data, Scrollama and Mapbox GL JS.
 
-See [Percent Built On](./web-development/scroll-story/).
+See [Scroll Story](./web-development/scroll-story/).
 
 <p align="center">
   <img width="700" style="border:1px solid grey" src="web-development/scroll-story/media/os-scroll-story.png" alt="Percent Built On tutorial web app">
