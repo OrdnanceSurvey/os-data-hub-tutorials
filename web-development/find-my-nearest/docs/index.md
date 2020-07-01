@@ -20,7 +20,6 @@ When the Leaflet library is imported, a global `L` object is declared. When we i
 var initLoad = true;
 var coordsToFind = null;
 
-// 1.
 // Initialize the map.
 var mapOptions = {
   minZoom: 7,
