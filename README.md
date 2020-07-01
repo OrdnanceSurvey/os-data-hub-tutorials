@@ -1,10 +1,10 @@
 # OS Data Hub API Tutorials
 
-## Data Science: Proptech
+## Data Science: Price Paid Spatial Distribution
 
 Visualising the spatial distribution of Lower Layer Super Output Area (LSOA) median price paid deciles for residential property sold between 1995 and 2019 for a local authority district (LAD) in England or Wales.
 
-See [Proptech Tutorial IPython Notebook](./data-science/price-paid-spatial-distribution/code/price-paid-spatial-distribution.ipynb).
+See [Price Paid Spatial Distribution Tutorial Jupyter Notebook](./data-science/price-paid-spatial-distribution/code/price-paid-spatial-distribution.ipynb).
 
 A Jupyter Notebook providing a data science pipeline in Python to leverage data insights through the integration of OS Data Hub APIs with other government data services from the Office for National Statistics and HM Land Registry.
 
