@@ -4,7 +4,7 @@ We'll be using [NodeJS](https://nodejs.org/en/) to download and extract Ordnance
 
 1. Download zipped directory with the data.
 2. Unzip all contained zipped directories.
-3. Copy all `.asc` files into one folder, ready to be loaded into QGIS for our [Shaded Relief Map tutorial](https://github.com/johnx25bd/os-data-hub-api-tutorials/tree/master/gis-applications/shaded-relief-map).
+3. Copy all `.asc` files into one folder, ready to be loaded into QGIS for our [Shaded Relief Map tutorial](https://github.com/OrdnanceSurvey/os-data-hub-tutorials/tree/master/gis-applications/shaded-relief-map).
 
 This tutorial was created using NodeJS v14.1.0. If you don't already have Node installed, [here is a great tutorial](https://www.taniarascia.com/how-to-install-and-use-node-js-and-npm-mac-and-windows/) on installing Node and npm on Windows and Mac.
 
@@ -153,7 +153,7 @@ const fs = require("fs");
 const path = require("path");
 
 /** Retrieve file paths from a given folder and its subfolders. */
-/* Big thanks to @darioblanco on https://gist.github.com/kethinov/6658166 
+/* Big thanks to @darioblanco on https://gist.github.com/kethinov/6658166
     for sharing this code!! */
 const getFilePaths = (folderPath) => {
   // Edge case: if a .zip file is passed in, we'll return that ready to unzip

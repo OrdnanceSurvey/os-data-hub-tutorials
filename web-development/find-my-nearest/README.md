@@ -32,7 +32,6 @@ When the Leaflet library is imported, a global `L` object is declared. When we i
 var initLoad = true;
 var coordsToFind = null;
 
-// 1.
 // Initialize the map.
 var mapOptions = {
   minZoom: 7,
@@ -44,8 +43,6 @@ var mapOptions = {
 };
 
 var map = new L.map("map", mapOptions);
-/*      'map' is the id of the 
-          <div> in the HTML document  */
 
 var ctrlScale = L.control.scale({ position: "bottomright" }).addTo(map);
 ```
@@ -58,8 +55,8 @@ const config = { apikey: "API_KEY_HERE" };
 
 // Define URLs of API endpoints
 const endpoints = {
-  maps: "https://api.os.uk/maps/raster/v1/zxy",
-  features: "https://api.os.uk/features/v1/wfs"
+  zxy: "https://api.os.uk/maps/raster/v1/zxy",
+  wfs: "https://api.os.uk/features/v1/wfs"
 };
 
 // Load and display ZXY tile layer on the map.
@@ -87,31 +84,27 @@ First, when they click "Select on map.", users are able to click a location with
 
 ```javascript
 function selectLocationOnMap(event) {
-  // On click return location, set to coordsToFind
-
-  var coord = event.latlng.toString().split(",");
-  var lat = coord[0].split("(");
-  var lng = coord[1].split(")");
-
-  let coords = [Number(lng[0]), Number(lat[1])];
-
+  var coords = [event.latlng.lng, event.latlng.lat];
   updateCoordsToFind(coords);
 }
 ```
 
-(Note: a special thanks for [@ramiroaznar](http://bl.ocks.org/ramiroaznar/2c2793c5b3953ea68e8dd26273f5b93c) for providing the reference code for this function.)
-
-The `updateCoordsToFind()` function sets a global variable to the `coords` parameter passed in, clears the map of existing markers and adds a new Leaflet marker to the map at that location. Then it flies to the location so the user can see where they're going to search.
+The `updateCoordsToFind()` function sets a global variable to the `coords` parameter passed in, clears the map of existing markers and adds a new Leaflet marker to the map at that location. Then it [optionally] flies to the location so the user can see where they're going to search.
 
 ```javascript
-function updateCoordsToFind(coords) {
+function updateCoordsToFind(coords, locate = false) {
   coordsToFind = coords;
   // ^^ declared globally
 
   coordsToFindGroup.clearLayers();
   L.marker(coords.reverse()).addTo(coordsToFindGroup);
 
-  map.flyTo(coordsToFind);
+  if (locate)
+    map.fitBounds(coordsToFindGroup.getBounds(), {
+      paddingTopLeft: [os.main.viewportPaddingOptions().left, 0],
+      paddingBottomRight: [0, 0],
+      maxZoom: 14
+    });
 }
 ```
 

@@ -10,13 +10,15 @@ products combined with third party datasets to create a rich interactive
   </video>
 </p>
 
+<em> 3D model with buildings themed on flood risk * </em>  
+
 Tools and APIs
 ----
 
 The following resources are used in creating the 3D model:
 
 - OS Maps API - [osdatahub.os.uk](https://osdatahub.os.uk/)
-- OS Open ZoomStack - [osdatahub.os.uk - downloads](https://osdatahub.os.uk/downloads/OpenZoomstack)
+- OS Open ZoomStack - [osdatahub.os.uk - downloads](https://osdatahub.os.uk/downloads/open/OpenZoomstack)
 - Environment Agency - [environment.data.gov.uk](https://environment.data.gov.uk/DefraDataDownload/?Mode=survey)
 - Environment Agency Flood Risk Zones - [Risk of Flooding from Rivers and Sea](https://environment.data.gov.uk/arcgis/rest/services/EA/RiskOfFloodingFromRiversAndSea/MapServer)
 
@@ -31,7 +33,7 @@ buildings). Terrain data that has complete GB coverage can be found in
 the form of [OS Terrain
 5](https://www.ordnancesurvey.co.uk/business-government/products/terrain-5)
 (5m grid resolution). Alternatively, [OS Terrain
-50](https://osdatahub.os.uk/downloads/Terrain50) (50m grid resolution)
+50](https://osdatahub.os.uk/downloads/open/Terrain50) (50m grid resolution)
 is also available to download for free from OS Data Hub.
 
 Tutorial
@@ -44,7 +46,7 @@ project (using the API Dashboard and API options) that includes the `OS
 Maps API`. Once created this project will contain your API Key and
 Endpoint that will be used later. Whilst still on OS Data Hub, download
 a copy of [OS Open
-ZoomStack](https://osdatahub.os.uk/downloads/OpenZoomstack) as a
+ZoomStack](https://osdatahub.os.uk/downloads/open/OpenZoomstack) as a
 GeoPackage from the `Download` page - we will include the Local Buildings
 layer as part of the 3D model.
 
@@ -180,4 +182,6 @@ e.g. 5.
 
 If you create a beautiful 3D model using OS data - let us know!
 
-<em> * The animation featured at the start of the tutorial was exported from Esri ArcGIS Pro (v2.5) which optimises the 3D model as the user navigates around it, meaning it is easier to work with larger and more detailed datasets.  You may notice that the landscape ‘changes’ as more detail is brought into view and the model is rendered for optimum resolution with features further away taking less priority.  The actual outline of the 3D model is directed from using the EA Lidar data which was captured in 2017 and focused on specific areas effected by flooding, hence why the tops of the Mendip Hills have been excluded. </em>  
+<em> * The animation featured at the start of the tutorial was exported from Esri ArcGIS Pro (v2.5) which optimises the 3D model as the user navigates around it, meaning it is easier to work with larger and more detailed datasets.  You may notice that the landscape ‘changes’ as more detail is brought into view and the model is rendered for optimum resolution with features further away taking less priority.  The actual outline of the 3D model is directed from using the EA Lidar data which was captured in 2017 and focused on specific areas effected by flooding, hence why the tops of the Mendip Hills have been excluded.
+  
+This tutorial is for demonstration purposes only -- flood risk modelling is a complex process that takes into consideration several different factors. </em>  
