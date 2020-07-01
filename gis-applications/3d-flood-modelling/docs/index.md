@@ -10,7 +10,7 @@ products combined with third party datasets to create a rich interactive
   </video>
 </p>
 
-<em> 3D Model with buildings themed on flood risk * </em>  
+<em> 3D model with buildings themed on flood risk * </em>  
 
 Tools and APIs
 ----
