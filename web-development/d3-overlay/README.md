@@ -28,8 +28,8 @@ One adjustment though: we want our basemap in greyscale, so we can distinguish t
 const config = { apikey: "YOUR_KEY_HERE" };
 
 const endpoints = {
-  vectorTile: "https://api.os.uk/maps/vector/v1/vts",
-  features: "https://api.os.uk/maps/features/v1/wfs"
+  vts: "https://api.os.uk/maps/vector/v1/vts",
+  wfs: "https://api.os.uk/maps/features/v1/wfs"
 };
 
 // Instantiate a new mapboxgl.Map object.
@@ -55,7 +55,7 @@ With the basemap created, we are ready to start working on our overlay.
 
 ## A D3 Overlay
 
-Our goal is to add a D3 overlay to our Mapbox basemap, placing SVG elements representing geographic features at their appropriate positions. This is a subtle trick - the user shouldn't be able to recognise the difference between the layers. But - programmatically - the SVG elements will have access to some of the tools D3 makes available, including mouse events, animations and so on.
+Our goal is to add a D3 overlay to our Mapbox basemap, placing SVG elements representing geographic features at their appropriate positions. This is a subtle trick - the user shouldn't be able to recognise the difference between the layers. But - programmatically - the SVG elements will have access to some of the functionality D3 makes available, including mouse events, animations and so on.
 
 ### Appending the SVG
 
@@ -135,7 +135,7 @@ We're only interested in fetching point data from the `Zoomstack_RailwayStations
 
 We downloaded the border of the borough from [Camden's Open Data website](https://opendata.camden.gov.uk/Maps/Camden-Ward-Boundary/yqyi-6agf), then simplified it using the Visvalingam weighted area method on [mapshaper.org](https://mapshaper.org/). This polygon will be used in our XML spatial filter - for now we place the file (`camden-simplified.json`) in the `data` directory.
 
-// GIF of simplifying geometry
+![Simplify in action](./media/simplify.gif)
 
 Once the basemap is loaded, we call an asynchronous function that loads this GeoJSON, draws the polygon as an SVG `<path>`. Let's see this code before looking at fetching results from the OS Features API.
 
@@ -208,7 +208,7 @@ let geojson = { type: "FeatureCollection", features: [] };
 
 while (resultsRemain) {
   // Fetch the GeoJSON
-  let response = await fetch(getUrl(endpoints.features, params));
+  let response = await fetch(getUrl(endpoints.wfs, params));
   let data = await response.json();
 
   // Add result features to our holder GeoJSON features array
