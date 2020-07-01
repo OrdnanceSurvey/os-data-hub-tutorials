@@ -17,7 +17,7 @@ Tools and APIs
 The following resources are used in creating the 3D model:
 
 - OS Maps API - [osdatahub.os.uk](https://osdatahub.os.uk/)
-- OS Open ZoomStack - [osdatahub.os.uk - downloads](https://osdatahub.os.uk/downloads/OpenZoomstack)
+- OS Open ZoomStack - [osdatahub.os.uk - downloads](https://osdatahub.os.uk/downloads/open/OpenZoomstack)
 - Environment Agency - [environment.data.gov.uk](https://environment.data.gov.uk/DefraDataDownload/?Mode=survey)
 - Environment Agency Flood Risk Zones - [Risk of Flooding from Rivers and Sea](https://environment.data.gov.uk/arcgis/rest/services/EA/RiskOfFloodingFromRiversAndSea/MapServer)
 
@@ -32,7 +32,7 @@ buildings). Terrain data that has complete GB coverage can be found in
 the form of [OS Terrain
 5](https://www.ordnancesurvey.co.uk/business-government/products/terrain-5)
 (5m grid resolution). Alternatively, [OS Terrain
-50](https://osdatahub.os.uk/downloads/Terrain50) (50m grid resolution)
+50](https://osdatahub.os.uk/downloads/open/Terrain50) (50m grid resolution)
 is also available to download for free from OS Data Hub.
 
 Tutorial
@@ -45,7 +45,7 @@ project (using the API Dashboard and API options) that includes the `OS
 Maps API`. Once created this project will contain your API Key and
 Endpoint that will be used later. Whilst still on OS Data Hub, download
 a copy of [OS Open
-ZoomStack](https://osdatahub.os.uk/downloads/OpenZoomstack) as a
+ZoomStack](https://osdatahub.os.uk/downloads/open/OpenZoomstack) as a
 GeoPackage from the `Download` page - we will include the Local Buildings
 layer as part of the 3D model.
 
