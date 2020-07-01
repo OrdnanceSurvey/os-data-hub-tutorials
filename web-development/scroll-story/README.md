@@ -20,7 +20,7 @@ The story will follow an October ascent of Ben Nevis, Great Britain's tallest mo
 
 ## HTML & CSS
 
-The HTML and CSS for this tutorial is quite lightweight. In [`index.html`](https://github.com/johnx25bd/os-data-hub-api-tutorials/blob/master/web-development/scroll-story/code/index.html), we load the Mapbox GL JS stylsheets and JavaScript library, along with [Scrollama](https://github.com/russellgoldenberg/scrollama) for detecting scroll events. We also load a local `style.css` stylesheet with a few styling rules.
+The HTML and CSS for this tutorial is quite lightweight. In [`index.html`](https://github.com/OrdnanceSurvey/os-data-hub-tutorials/blob/master/web-development/scroll-story/code/index.html), we load the Mapbox GL JS stylsheets and JavaScript library, along with [Scrollama](https://github.com/russellgoldenberg/scrollama) for detecting scroll events. We also load a local `style.css` stylesheet with a few styling rules.
 
 In the document `<body>`, we create two `<div>`s: `#map` and `#story`. We then load an execute scripts: `js/config.js` and `js/tutorial.js`. (We also create a few helper functions and variables in `js/helpers.js`) It is inside these JavaScipt files that the story content is written, the map is created, and the scroll story is set up.
 
