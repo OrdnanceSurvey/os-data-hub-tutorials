@@ -1,6 +1,6 @@
 Working with large datasets can be a challenge. With a few programming tools, however, we can radically improve the efficiency of collecting and manipulating these datasets.
 
-We'll be using NodeJS to download and extract Ordnance Survey's Terrain50 Digital Elevation Model dataset from the [OS Downloads API](https://osdatahub.os.uk/docs/downloads/overview).
+We'll be using [NodeJS](https://nodejs.org/en/) to download and extract Ordnance Survey's Terrain50 Digital Elevation Model dataset from the [OS Downloads API](https://osdatahub.os.uk/docs/downloads/overview).
 
 1. Download zipped directory with the data.
 2. Unzip all contained zipped directories.
@@ -251,15 +251,15 @@ const unzipAll = require("./unzipAll.js");
 
 We now have a complete Node program and modules, which we can execute by running `node app.js` on the command line in our `os-downloads-tutorial` directory.
 
-This may take a little time as the OS Terrain 50 dataset is 161MB. Once this is completed, there should be a new folder, `working_data/asc_skye` with the `.asc` files, ready to work with in QGIS. If you want to complete the tutorial and create a shaded relief map with the DEM data downloaded, find the tutorial [here](https://github.com/johnx25bd/os-data-hub-api-tutorials/tree/master/gis-applications/shaded-relief-map).
+This may take a little time as the OS Terrain 50 dataset is 161MB. Once this is completed, there should be a new folder, `working_data/asc_skye` with the `.asc` files, ready to work with in QGIS. If you want to complete the tutorial and create a shaded relief map with the DEM data downloaded, find the tutorial [here](https://github.com/OrdnanceSurvey/os-data-hub-tutorials/tree/master/gis-applications/shaded-relief-map).
 
 ## Download, install and run
 
 If you'd rather just download and run the code we described in the tutorial, you can clone the repository, install the npm packages and run it using the following commands:
 
 ```bash
-git clone _
-cd ......
+git clone https://github.com/OrdnanceSurvey/os-data-hub-tutorials.git
+cd os-data-hub-tutorials/web-development/automated-op
 npm install
 
 node app.js
