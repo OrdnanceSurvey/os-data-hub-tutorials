@@ -1,12 +1,15 @@
 var initLoad = true;
 var coordsToFind = null;
 
+// Set API key
+const config = { apikey: "YOUR_KEY_HERE" };
+
+// Define URLs of API endpoints
 const endpoints = {
   zxy: "https://api.os.uk/maps/raster/v1/zxy",
   wfs: "https://api.os.uk/features/v1/wfs"
 };
 
-// 1.
 // Initialize the map.
 var mapOptions = {
   minZoom: 7,
@@ -18,6 +21,7 @@ var mapOptions = {
 
 var map = new L.map("map", mapOptions);
 
+// Load and display ZXY tile layer on the map.
 var basemap = L.tileLayer(
   endpoints.zxy + "/Light_3857/{z}/{x}/{y}.png?key=" + config.apikey,
   {
@@ -146,7 +150,6 @@ function fetchNearestFeatures(e) {
         });
     } else {
       // When no results remain
-      removeSpinner();
       if (geojson.features.length) {
         // Call the function to analyse distance and find nearest 20 features
         findNearestN(pointToFind, geojson, 20, typeName);
@@ -238,7 +241,7 @@ function addDistanceFromPointToPolygon(point, polygon) {
   turf.coordEach(polygon, function (currentCoord) {
     // {Turf.js} Calculates the distance between two points in kilometres.
     var distance = turf.distance(point, turf.point(currentCoord));
-    // console.log('distance', distance)
+
     // If the distance is less than that whch has previously been calculated
     // replace the nearest values with those from the current index.
     if (distance <= nearestDistance) {
@@ -263,156 +266,23 @@ map.on({
       $("#map div.zoom-control .zoom-in").addClass("disabled");
     if (map.getZoom() == map.getMinZoom())
       $("#map div.zoom-control .zoom-out").addClass("disabled");
-  },
-  move: function () {
-    os.coordinates.update();
-  },
-  click: function () {
-    resetProperties();
   }
 });
 
-map.getPane("shadowPane").style.display = "none"; // hide shadow pane
-
-function addLayer() {
-  map.createPane("foundFeatures");
-
-  var foundFeatures = L.geoJson(null, {
-      onEachFeature: onEachFeature,
-      pane: "foundFeatures",
-      style: { color: "#666", weight: 2, fillOpacity: 0.3 }
-    }),
-    mapFeatures = omnivore
-      .geojson("data/sample/boundary.geojson", null, foundFeatures)
-      .on("ready", function () {
-        // this.eachLayer(bindPopup);
-      })
-      .addTo(map);
-}
-
-$(
-  ".osel-sliding-side-panel.panel-left .layers .layer .layer-element[data-state='unchecked']"
-).each(function () {
-  var id = $(this).parent().data("id");
-  $(map.getPane(id)).addClass("hidden");
-});
-
-function onEachFeature(feature, layer) {
-  layer.on("click", function (e) {
-    L.DomEvent.stopPropagation(e);
-
-    sliderRight.slideReveal("hide");
-
-    var coord = e.latlng;
-    offset = feature.geometry.type === "Point" ? [0, -22] : [0, 8];
-
-    var str = "";
-    $.each(feature.properties, function (k, v) {
-      var value = v !== "" ? v : "&lt;null&gt;";
-      str +=
-        '<div class="property"><div>' +
-        k +
-        "</div><div>" +
-        value +
-        "</div></div>";
-    });
-
-    $(".osel-feature-properties").html(str);
-    $(".osel-sliding-side-panel.panel-right [class^='scroller']")
-      .scrollTop(0)
-      .scrollLeft(0);
-
-    var popupContent =
-      '\
-            <div class="osel-popup-content">\
-                <div class="osel-popup-heading">\
-                    <div class="osel-popup-title">' +
-      feature.properties[config.defaultField[layer.options.pane]] +
-      '</div>\
-                </div>\
-                <div class="osel-popup-link">More details</div>\
-            </div>\
-        ';
-
-    displayPopup(popupContent, coord, offset, mapOffsetX);
-  });
-}
-
-function sortLayers() {
-  $("ul.layers .layer")
-    .reverse()
-    .each(function (index) {
-      var id = $(this).data("id");
-      map.getPane(window[id].options.pane).style.zIndex = 650 + index;
-    });
-}
-
 function toggleLayer(elem, type) {
-  resetProperties();
-
-  var id = elem.parent().data("id");
-  $(map.getPane(window[id].options.pane)).toggleClass("hidden");
 }
 
-function resetProperties() {
-  $(".osel-fixed-popup").remove();
-  map.closePopup();
-  sliderRight.slideReveal("hide"); // <-- ??
+function filterLayer(elem) {
 }
 
-function generateQueryString(style = defaults.basemapStyle) {
-  // Define parameters object.
-  let params = {
-    key: config.apikey,
-    service: "WMTS",
-    request: "GetTile",
-    version: "2.0.0",
-    height: 256,
-    width: 256,
-    outputFormat: "image/png",
-    style: "default",
-    layer: style + "_3857",
-    tileMatrixSet: "EPSG:3857",
-    tileMatrix: "{z}",
-    tileRow: "{y}",
-    tileCol: "{x}"
-  };
-
-  // Construct query string parameters from object.
-  return Object.keys(params)
-    .map(function (key) {
-      return key + "=" + params[key];
-    })
-    .join("&");
-}
 function switchBasemap(style) {
-  basemap.setUrl(endpoints.zxy + "?" + generateQueryString(style));
-}
-
-function zoomToLayerExtent(lyr) {
-  map.flyToBounds(window[lyr].getBounds(), {
-    padding: [50, 50]
-  });
-}
-
-function setLayerOpacity(lyr, value) {
-  map.getPane(window[lyr].options.pane).style.opacity = value;
+  basemap.setUrl(getTileServer(style));
 }
 
 function getTileServer(style = defaults.basemapStyle) {
   return (
     endpoints.zxy + "/" + style + "_3857/{z}/{x}/{y}.png?key=" + config.apikey
   );
-}
-
-function addSpinner() {
-  $("#request .find").hide();
-  $("#request .fetching").show();
-}
-
-function removeSpinner() {
-  $("#request .find").show();
-  $("#request .fetching").hide();
 }
 
 function getFeatureTypeToFind(featureTypeToFind) {
@@ -446,23 +316,22 @@ function toggleClickCoordsListener() {
 }
 
 function selectLocationOnMap(event) {
-  // On click return location, set to coordsToFind
-
-  // Thanks @ramiroaznar! http://bl.ocks.org/ramiroaznar/2c2793c5b3953ea68e8dd26273f5b93c
-  var coord = event.latlng.toString().split(",");
-  var lat = coord[0].split("(");
-  var lng = coord[1].split(")");
-
-  let coords = [Number(lng[0]), Number(lat[1])];
-
+  var coords = [event.latlng.lng, event.latlng.lat];
   updateCoordsToFind(coords);
 }
 
-function updateCoordsToFind(coords) {
+function updateCoordsToFind(coords, locate = false) {
   coordsToFindGroup.clearLayers();
 
   coordsToFind = coords;
   L.marker([coordsToFind[1], coordsToFind[0]]).addTo(coordsToFindGroup);
+
+  if (locate)
+    map.fitBounds(coordsToFindGroup.getBounds(), {
+      paddingTopLeft: [os.main.viewportPaddingOptions().left, 0],
+      paddingBottomRight: [0, 0],
+      maxZoom: 14
+    });
 }
 
 function setUseMyLocation() {
@@ -473,13 +342,13 @@ function setUseMyLocation() {
       function success(position) {
         // for when getting location is a success
         let coords = [position.coords.longitude, position.coords.latitude];
-        updateCoordsToFind(coords);
+        updateCoordsToFind(coords, true);
       },
       function error(error_message) {
         // Notify that location detection resulted in an error
         os.notification.show(
           "error",
-          "An error has occured while retrieving location:<br /><br/>" +
+          "An error has occured while retrieving location:<br/><br/>" +
             error_message.message
         );
         console.error(
@@ -496,5 +365,3 @@ function setUseMyLocation() {
     );
   }
 }
-
-$.fn.reverse = [].reverse;
