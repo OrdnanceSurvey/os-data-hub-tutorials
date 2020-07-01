@@ -7,7 +7,7 @@ products combined with third party datasets to create a rich interactive
 3D model.
 
 <p align="center">
-  <img width="700" src="./media/image1.png" alt="Image of final 3D model">
+  <img width="700" src="./media/image1.png" alt="Image of final 3D model" /><br>
   <em>3D model with buildings themed by flood risk (click [here](https://labs.os.uk/public/os-data-hub-tutorials/dist/gis-applications/3d-flood-modelling/OS_EA_Tutorial.mp4) to view animation)<em>
 </p>
 
