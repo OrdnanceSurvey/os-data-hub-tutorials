@@ -165,6 +165,8 @@ map.on('load', async function () {
 
 Now we construct a filter from the Camden borough geometry, and send a request to the OS Features API. The request will return a GeoJSON FeatureCollection where each Feature in the features array represents a single geometry (in this case, `Point`) that matches query parameters.
 
+Note how we call `turf.flip()` on the GeoJSON feature representing the Camden polygon. This is because the OGC Web Feature Service requires coordinate pairs to be ordered as [latitude, longitude], while GeoJSON orders coordinates as [longitude, latitude]. This is a [consistent bugbear](https://macwright.org/lonlat/) of people working with spatial data - so keep your eyes open!
+
 ```javascript
 // Note: this is still inside the map.on('load') callback function body!
 
@@ -272,7 +274,7 @@ And, finally, we call `update()` to update each `<path>`'s `d` attribute based o
 
 And there you have it! We created a custom-styled basemap with Mapbox GL JS and the OS Vector Tile API, added an SVG overlay with D3.js, loaded spatial data from the OS Features API and visualised a polygon and a number of points on the overlay. We connected some event listeners and a dynamic tooltip.
 
-What's more, we fused the amazing world of D3.js with the beautiful interactive vector tile maps built with OS Data Hub APIs and Mapbox GL JS.
+What's more, we fused the amazing world of D3.js with the beautiful interactive vector tile maps built with the OS Vector Tile and Mapbox GL JS.
 
 Want to see more? Check out our Data Hub APIs on the [OS Data Hub](https://osdatahub.os.uk/).
 

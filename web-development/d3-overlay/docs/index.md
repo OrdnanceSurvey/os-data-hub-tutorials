@@ -125,9 +125,11 @@ We're only interested in fetching point data from the `Zoomstack_RailwayStations
 
 We downloaded the border of the borough from [Camden's Open Data website](https://opendata.camden.gov.uk/Maps/Camden-Ward-Boundary/yqyi-6agf), then simplified it using the Visvalingam weighted area method on [mapshaper.org](https://mapshaper.org/). This polygon will be used in our XML spatial filter - for now we place the file (`camden-simplified.json`) in the `data` directory.
 
-![Simplify in action]()
+![Simplify in action](https://github.com/OrdnanceSurvey/os-data-hub-tutorials/raw/master/web-development/d3-overlay/media/simplify.gif)
 
 Once the basemap is loaded, we call an asynchronous function that loads this GeoJSON, draws the polygon as an SVG `<path>`. Let's see this code before looking at fetching results from the OS Features API.
+
+Note how we call `turf.flip()` on the GeoJSON feature representing the Camden polygon. This is because the OGC Web Feature Service requires coordinate pairs to be ordered as [latitude, longitude], while GeoJSON orders coordinates as [longitude, latitude]. This is a [consistent bugbear](https://macwright.org/lonlat/) of people working with spatial data - so keep your eyes open!
 
 ```javascript
 
@@ -262,8 +264,4 @@ And, finally, we call `update()` to update each `<path>`'s `d` attribute based o
 
 And there you have it! We created a custom-styled basemap with Mapbox GL JS and the OS Vector Tile API, added an SVG overlay with D3.js, loaded spatial data from the OS Features API and visualised a polygon and a number of points on the overlay. We connected some event listeners and a dynamic tooltip.
 
-What's more, we fused the amazing world of D3.js with the beautiful interactive vector tile maps built with OS Data Hub APIs and Mapbox GL JS.
-
-Want to see more? Check out our Data Hub APIs on the [OS Data Hub](https://osdatahub.os.uk/).
-
-And let us know if you build on or adapt this tutorial by tweeting at [@OrdnanceSurvey](https://twitter.com/ordnancesurvey) and tagging [#OSDeveloper](https://twitter.com/hashtag/OSDeveloper).
+What's more, we fused the amazing world of D3.js with the beautiful interactive vector tile maps built with OS Vector Tile API and Mapbox GL JS.
