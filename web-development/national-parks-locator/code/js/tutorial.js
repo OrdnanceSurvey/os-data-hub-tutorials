@@ -68,7 +68,7 @@ var nationalParks = omnivore
       let element = `<li class="layer" data-np-id="${nationalPark.properties.id}">
                                 <div class="layer-element icon" data-type="list-item" data-id="${nationalPark.properties.id}">
                                     <div class="label">
-                                        <img class='np-arrow' src='./assets/img/np-arrow.png' />
+                                        <img class='np-arrow' src='./img/np-arrow.png' />
                                         <span class='np-name'>${nationalPark.properties.name}
                                             </span>
                                             <a href="${nationalPark.properties.url}" target="_blank">

@@ -241,10 +241,10 @@ To make our list we loop through the array of features in the `L.geoJSON` object
         let nationalPark = nationalParkFeature.feature; // <- the GeoJSON Feature object
 
         // First create the HTML element that will represent the park
-        let element =   `<li class="layer" data-np-id="${nationalPark.properties.id}">
+        let element = `<li class="layer" data-np-id="${nationalPark.properties.id}">
             <div class="layer-element icon" data-type="list-item" data-id="${nationalPark.properties.id}">
                 <div class="label">
-                    <img class='np-arrow-green' src='./assets/img/np-arrow-green.png' />
+                    <img class='np-arrow' src='./img/np-arrow.png' />
                     <span class='np-name'>${ nationalPark.properties.name }
                         </span>
                         <a href="${ nationalPark.properties.url }" target="_blank">

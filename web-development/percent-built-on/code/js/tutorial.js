@@ -175,8 +175,7 @@ document
 async function getIntersectingFeatures(polygon) {
   // Get the circle geometry coordinates and return a new space-delimited string.
   var coords = turf.flip(polygon.features[0]).geometry.coordinates[0].join(" ");
-  console.log(turf.flip(polygon.features[0]));
-  console.log(coords);
+
   // Create an OGC XML filter parameter value which will select the Greenspace
   // features intersecting the circle polygon coordinates.
   // *** ADD Functionality to filter by Type attribute based on dropdown input!

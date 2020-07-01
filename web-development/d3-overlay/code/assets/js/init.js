@@ -12,11 +12,9 @@ var defaults = {
 var isLeaflet = typeof L !== "undefined" ? true : false,
   isMapboxGL = typeof mapboxgl !== "undefined" ? true : false;
 
-var os = {};
+window.os = window.os || {};
 
-fetch(
-  "https://raw.githubusercontent.com/OrdnanceSurvey/GeoDataViz-Toolkit/master/Colours/GDV-colour-palettes-v0.7.json"
-)
+fetch("https://raw.githubusercontent.com/OrdnanceSurvey/GeoDataViz-Toolkit/master/Colours/GDV-colour-palettes-v0.7.json")
   .then((res) => {
     return res.json();
   })

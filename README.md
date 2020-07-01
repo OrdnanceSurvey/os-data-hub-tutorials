@@ -4,12 +4,12 @@
 
 Visualising the spatial distribution of Lower Layer Super Output Area (LSOA) median price paid deciles for residential property sold between 1995 and 2019 for a local authority district (LAD) in England or Wales.
 
-See [Proptech Tutorial IPython Notebook](./data-science/proptech/os-data-hub-api-tutorial-01-proptech.ipynb).
+See [Proptech Tutorial IPython Notebook](./data-science/price-paid-spatial-distribution/code/price-paid-spatial-distribution.ipynb).
 
 A Jupyter Notebook providing a data science pipeline in Python to leverage data insights through the integration of OS Data Hub APIs with other government data services from the Office for National Statistics and HM Land Registry.
 
 <p align="center">
-  <img width="700" style="border:1px solid grey" src="data-science/proptech/images/southampton-local-authority-district-median-price-paid-deciles.png" alt="Southampton Local Authority District Median Price Paid Deciles">
+  <img width="700" style="border:1px solid grey" src="data-science/price-paid-spatial-distribution/media/southampton-local-authority-district-median-price-paid-deciles.png" alt="Southampton Local Authority District Median Price Paid Deciles">
 </p>
 
 ## Web Development: Automated Open Data Download
@@ -72,4 +72,3 @@ See [Scroll Story](./web-development/scroll-story/).
 <p align="center">
   <img width="700" style="border:1px solid grey" src="web-development/scroll-story/media/os-scroll-story.png" alt="Percent Built On tutorial web app">
 </p>
-

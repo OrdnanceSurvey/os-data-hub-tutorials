@@ -24,17 +24,17 @@ Drag and drop all the `.asc` files into the QGIS layers pane. Each file should a
 
 We can see all the tiles, but they are separate, and the borders are often visible due to differing altitude ranges from tile to tile. The highest point in a tile will appear white, whether it is 20m or 2000m above sea level. The dataset covers all land area in Britain, so tiles that are only water are not included.
 
-![Unmerged DEM](https://raw.githubusercontent.com/johnx25bd/os-data-hub-api-tutorials/master/gis-applications/shaded-relief-map/media/unmerged-dem.png)
+![Unmerged DEM](https://raw.githubusercontent.com/OrdnanceSurvey/os-data-hub-tutorials/master/gis-applications/shaded-relief-map/media/unmerged-dem.png)
 
 To solve this we'll merge the DEM tiles into a single raster image. Select `Raster > Miscellaneous > Merge...` from the menu; a dialogue box will pop up. First add all the tiles as the input elements with the `...` button next to the input layers text box. (Note: in some versions of QGIS for Mac, pressing `OK` sometimes moves the `Merge` textbox behind the main window, so you may have to move it back to the front.)
 
 Leave the other parameters as-is and click `Run`. The console will show output as the tiles are merged, and a layer called `Merged` should be added to the `Layers` pane, and a black-and-white image should appear over top the tiles we added. Close the `Merge` popup and examine the new merged raster image. Notice how you can no longer see the edges of the individual tiles - as before, the highest point in the merged tile is white, and the lowest is black.
 
-![Merged DEM](https://raw.githubusercontent.com/johnx25bd/os-data-hub-api-tutorials/master/gis-applications/shaded-relief-map/media/merged-dem.png)
+![Merged DEM](https://raw.githubusercontent.com/OrdnanceSurvey/os-data-hub-tutorials/master/gis-applications/shaded-relief-map/media/merged-dem.png)
 
 You can now remove the individual tiles from the Layers panel by selecting them all and `right-click > Remove Layer...`. This will clean up your interface, but won't delete the original data from your disk.
 
-![Remove layers](https://raw.githubusercontent.com/johnx25bd/os-data-hub-api-tutorials/master/gis-applications/shaded-relief-map/media/remove-layers.png)
+![Remove layers](https://raw.githubusercontent.com/OrdnanceSurvey/os-data-hub-tutorials/master/gis-applications/shaded-relief-map/media/remove-layers.png)
 
 ### Removing `nodata`
 
@@ -42,7 +42,7 @@ To make sure the output hillshade only shows land area we need to remove the nod
 
 Clicking `OK` will create a new raster layer with the `nodata` (i.e. sea) values excluded. This DEM representing the landforms of western Scotland is ready for our analysis.
 
-![Raster with nodata values.](https://raw.githubusercontent.com/johnx25bd/os-data-hub-api-tutorials/master/gis-applications/shaded-relief-map/media/removing-nodata.png)
+![Raster with nodata values.](https://raw.githubusercontent.com/OrdnanceSurvey/os-data-hub-tutorials/master/gis-applications/shaded-relief-map/media/removing-nodata.png)
 
 (Note - there are [other ways](https://gis.stackexchange.com/questions/197446/gdal-set-negative-values-to-nodata-or-nan) to remove nodata at other steps in this process, but this solution worked well in this case.)
 
@@ -67,11 +67,11 @@ Feel free to play around with these parameters to create a hillshade image you l
 | `Combined shading`         | `true`  |
 | `Multidirectional shading` | `false` |
 
-![Hillshade analysis dialogue](https://raw.githubusercontent.com/johnx25bd/os-data-hub-api-tutorials/master/gis-applications/shaded-relief-map/media/hillshade-options.png)
+![Hillshade analysis dialogue](https://raw.githubusercontent.com/OrdnanceSurvey/os-data-hub-tutorials/master/gis-applications/shaded-relief-map/media/hillshade-options.png)
 
 `Run` generates the hillshade image layer from the `Merged` raster and the input parameters and adds it to the map.
 
-![Initial hillshade output](https://raw.githubusercontent.com/johnx25bd/os-data-hub-api-tutorials/master/gis-applications/shaded-relief-map/media/initial-hillshade.png)
+![Initial hillshade output](https://raw.githubusercontent.com/OrdnanceSurvey/os-data-hub-tutorials/master/gis-applications/shaded-relief-map/media/initial-hillshade.png)
 
 ### Styling in QGIS
 
@@ -89,9 +89,9 @@ Once you have your color ramp, click `Classify` so each stop on the ramp is adde
 
 We adjusted the lower blue cut-off value to 0 so only cells below sea level would appear as water.
 
-![DEM Layer Properties dialogue](https://raw.githubusercontent.com/johnx25bd/os-data-hub-api-tutorials/master/gis-applications/shaded-relief-map/media/dem-layer-properties.png)
+![DEM Layer Properties dialogue](https://raw.githubusercontent.com/OrdnanceSurvey/os-data-hub-tutorials/master/gis-applications/shaded-relief-map/media/dem-layer-properties.png)
 
-![color gradient](https://raw.githubusercontent.com/johnx25bd/os-data-hub-api-tutorials/master/gis-applications/shaded-relief-map/media/color-ramp.png)
+![color gradient](https://raw.githubusercontent.com/OrdnanceSurvey/os-data-hub-tutorials/master/gis-applications/shaded-relief-map/media/color-ramp.png)
 
 The last step is styling the hillshade layer we created with our analysis. Make sure this layer is on top of the Terrain 50 layer we just styled, and open the `Layer Properties > Symbology` interface again.
 
@@ -101,6 +101,6 @@ As the last step, we set the overall `Transparency` of the layer to 50%.
 
 There we go - a shaded relief map of western Scotland, focused on the Isle of Skye. Data collected from the OS Downloads API with NodeJS, analysis done in QGIS.
 
-![Shaded relief map](https://raw.githubusercontent.com/johnx25bd/os-data-hub-api-tutorials/master/gis-applications/shaded-relief-map/media/final-hillshade.png)
+![Shaded relief map](https://raw.githubusercontent.com/OrdnanceSurvey/os-data-hub-tutorials/master/gis-applications/shaded-relief-map/media/final-hillshade.png)
 
 If you make a beautiful map using OS data - let us know!
