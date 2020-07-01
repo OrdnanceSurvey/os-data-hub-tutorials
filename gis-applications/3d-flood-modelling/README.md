@@ -180,3 +180,5 @@ e.g. 5.
 ![3D model - at risk buildings - image 4](./media/image16.png)
 
 If you create a beautiful 3D model using OS data - let us know!
+
+<em>This tutorial is for demonstration purposes only -- flood risk modelling is a complex process that takes into consideration several different factors.</em>    
