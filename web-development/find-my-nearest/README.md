@@ -112,7 +112,7 @@ We also let users request results from the approximate location of their IP addr
 
 ### Querying the OS Features API
 
-The OS Features API serves vector features from Ordnance Survey's huge dataset that match query parameters. To find features near the point queried, we take a few sequential steps:
+The OS Features API serves vector features from Ordnance Survey's spatial database that match query parameters. To find features near the point queried, we take a few sequential steps:
 
 1. Build a query based on user inputs.
 2. Fetch results based on the query parameters.
@@ -125,7 +125,7 @@ Let's look at each of these in order.
 
 The user is required to input the type of features to find and the location they want to search. With this information, we dynamically build a request for the OS Features API.
 
-This is done by using [Turf.js](https://osdatahub.os.uk) to create a 1km buffer polygon around the point to search. This polygon is used to construct an XML filter based on the Open Geospatial Consortium (OGC) standard, which is included in the HTTP GET request to the OS Features API. The server performs a spatial query and returns a GeoJSON FeatureCollection with an array of polygons intersecting that polygon. We'll also define an object literal (`wfsParams`) containing parameters that we'll encode into the URL, which we'll use to request data.
+This is done by using [Turf.js](https://osdatahub.os.uk) to create a 1km buffer polygon around the point to search. This polygon is used to construct an XML filter based on the Open Geospatial Consortium (OGC) standard, which is included in the HTTP GET request to the OS Features API. The server performs a spatial query and returns a GeoJSON FeatureCollection with an array of features intersecting that buffer polygon. We'll define an object literal (`wfsParams`) containing parameters that we'll encode into the URL, which we'll use to request data.
 
 Let's look at the code.
 
