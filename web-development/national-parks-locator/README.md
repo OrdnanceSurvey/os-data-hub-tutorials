@@ -12,7 +12,7 @@ We use data the _[OS Maps](https://osdatahub.os.uk/docs/wmts/overview)_ and _[OS
 
 Our locator app will have two main areas of the interface: a list of features to locate in a panel, and a map with those features displayed.
 
-To make things interesting we are going to connect the two representations of the map geometries - when the user hovers on a national park on the list, the corresponding geometry should highlight, and vice versa. We will also implement event handlers so when a user clicks on either the `<li>` or the polygon, the map zooms to that national park.
+To make things interesting we are going to use JavaScript to interactively connect the map and list representations of the national parks - when the user hovers on a national park on the list, the corresponding geometry should highlight, and vice versa. We will also implement event handlers so when a user clicks on either the `<li>` or the polygon, the map zooms to that national park.
 
 ## The Data
 
@@ -148,8 +148,8 @@ function unhighlightListElement(dataId) {
 }
 
 // Animated map.flyToBounds() with padding to account for the panel covering part of the map.
-function flyToBoundsOffset(dataId, offsetElSelector, elPosition = "left") {
-  let offset = $(offsetElSelector).width();
+function flyToBoundsOffset(dataId, elPosition = "left") {
+  let offset = os.main.viewportPaddingOptions()[elPosition];
 
   let geojsonLayer = getFeatureById(dataId);
 
@@ -169,13 +169,14 @@ function flyToBoundsOffset(dataId, offsetElSelector, elPosition = "left") {
 
   map.flyToBounds(geojsonLayer.getBounds(), paddingOptions);
 }
+
 ```
 
 ### Now, the GeoJSON
 
 Because we're loading data from an external resource, we need to make sure that the data loads before we move on to subsequent lines. We will use a handy library called [leaflet-omnivore](https://github.com/mapbox/leaflet-omnivore) to fetch the GeoJSON file we've prepared and load it into a `L.geoJSON` object.
 
-When the `omnivore.geojson()` method has loaded the data, it fires a `'ready'` event. We'll place the code that relies on the GeoJSON inside this event handler so we can be sure that it
+When the `omnivore.geojson()` method has loaded the data, it fires a `'ready'` event. We'll place the code that relies on the GeoJSON inside this event handler so we can be sure that it only is executed once the data has loaded.
 
 #### Creating a custom L.geoJSON object
 
@@ -188,8 +189,8 @@ This pattern lets us bind event listeners to each feature, using Leaflet's `onEa
 // We'll pass this into the omnivore.geojson() method shortly
 var parksLayer = L.geoJSON(null, {
   style: {
-    fillColor: osGreen[3],
-    color: osGreen[6],
+    fillColor: os.palette.sequential.s2[3],
+    color: os.palette.sequential.s2[6],
     fillOpacity: 0.3,
     weight: 1
   },
@@ -206,7 +207,7 @@ var parksLayer = L.geoJSON(null, {
         unhighlightListElement(feature.properties.id);
       },
       click: function (e) {
-        flyToBoundsOffset(feature.properties.id, ".osel-sliding-side-panel");
+        flyToBoundsOffset(feature.properties.id);
       }
     });
   }
@@ -235,6 +236,7 @@ Alright, our geographic features are added to the `L.geoJSON` object with event 
 To make our list we loop through the array of features in the `L.geoJSON` object. In the loop, we will be creating a `<li>` element with park-specific data to place in the left panel. Then we'll attach event listeners and append it to the `<ul class="layers">` defined in `index.html`.
 
 ```javascript
+    // This code is being executed inside the omnivore.geojson().on('ready') callback.
     // Remember that nationalParks is a L.geoJSON object - with a .getLayers() method
     nationalParks.getLayers().forEach(function (nationalParkFeature, i) {
 
@@ -262,7 +264,7 @@ To make our list we loop through the array of features in the `L.geoJSON` object
         $(element).find('span').on('click', function (e) {
             e.preventDefault();
             // Fly to the feature
-            flyToBoundsOffset(nationalPark.properties.id, '.osel-sliding-side-panel')
+            flyToBoundsOffset(nationalPark.properties.id)
         });
 
         // Highlight on mouseenter ...
