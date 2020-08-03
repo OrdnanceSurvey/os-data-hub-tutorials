@@ -1,6 +1,6 @@
 const config = {};
 
-config.apikey = "YOUR_KEY_HERE";
+config.apikey = "JydUr1HO7ejqBhw0YP19W3b1GonFwmzr";
 
 // mapbox-gl-draw modes to disable draggable drawn polygons
 const NewSimpleSelect = _.extend(MapboxDraw.modes.simple_select, {

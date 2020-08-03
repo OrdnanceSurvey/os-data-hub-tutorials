@@ -20,9 +20,9 @@ Here's an example object in this `chapters` array - each property will be used i
 
 ```javascript
 {
-    id: 'scotland',
-    title: 'Scotland in October.',
-    image: [''],
+    id: "scotland",
+    title: "Scotland in October.",
+    image: [""],
     description: `A 4,413-foot tall collapsed volcano, Ben Nevis is Great Britain\'s highest peak
                     (<a href="https://en.wikipedia.org/wiki/Ben_Nevis" target="_blank">Wikipedia</a>).
                     The mountain is near the town of Fort William, at the mouth of the Rivers Lochy and Nevis.
@@ -36,12 +36,12 @@ Here's an example object in this `chapters` array - each property will be used i
     },
     onChapterEnter: [
         { layer: "route", opacity: 0 },
-        { layer: 'marker', opacity: 0 },
-        { layer: 'shelter', opacity: 0 }
+        { layer: "marker", opacity: 0 },
+        { layer: "shelter", opacity: 0 }
     ],
     onChapterExit: [
         {
-            layer: 'shelter',
+            layer: "shelter",
             opacity: 0
         }
     ]
@@ -50,7 +50,7 @@ Here's an example object in this `chapters` array - each property will be used i
 
 ### The `chapters`
 
-Just as in a book, the story is divided into chapters - represented as an array of objects. Eact `chapter` object has the following properties:
+Just as in a book, the story is divided into chapters. Here, the story is represented as an  array of `chapter` objects. Each `chapter` object has the following properties:
 
 | Key              | Value                                                                                                                  |
 | ---------------- | ---------------------------------------------------------------------------------------------------------------------- |
@@ -64,7 +64,7 @@ Just as in a book, the story is divided into chapters - represented as an array 
 
 _(Note: this is slightly adapted from the Mapbox storytelling template, to enable multiple images in the same chapter.)_
 
-We'll be using all of these properties to create our scroll story. The `location` `object` deserves extra attention as this is where we declare the `center`, `zoom`, `pitch` and `bearing` values - which ultimately determine what is visible on the map that appears in the viewport. Mapbox provides a handy [Location Helper](https://demos.mapbox.com/location-helper/) interface to capture these values.
+We'll be using all of these properties to create our scroll story. The `location` object deserves extra attention as this is where we declare the `center`, `zoom`, `pitch` and `bearing` values - which ultimately determine what is visible on the map that appears in the viewport. Mapbox provides a handy [Location Helper](https://demos.mapbox.com/location-helper/) interface to capture these values.
 
 ## `tutorial.js`
 

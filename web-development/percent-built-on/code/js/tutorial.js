@@ -149,10 +149,15 @@ document
           "line-width": 2
         }
       });
+
+      removeSpinner('success');
+
     } else {
       percent = 0;
       map.getSource("buildings").setData(null);
       map.getSource("buildings-intersection").setData(null);
+      removeSpinner('failure');
+
     }
 
     $("#percent-built span").text((percent * 100).toFixed(2));
@@ -167,7 +172,6 @@ document
         top: 50
       }
     });
-    removeSpinner();
 
     // Add popup that shows the % of that percentage of that particular
   });
@@ -306,15 +310,25 @@ function addSpinner() {
   $(".fetching").show();
 }
 
-function removeSpinner() {
+function removeSpinner(outcome) {
+
   $(".osel-toast-notification").removeClass("info");
-  $(".osel-toast-notification").addClass("success");
-  $(".osel-toast-notification").text("Success!");
+
+  if (outcome == 'success') {
+    $(".osel-toast-notification").addClass("success");
+    $(".osel-toast-notification").text("Success!");
+  } else if (outcome == 'failure') {
+    $(".osel-toast-notification").addClass("error");
+    $(".osel-toast-notification").text("No intersecting features found!"); 
+  }
+  
 
   setTimeout(function () {
     $(".osel-toast-notification").fadeOut(function () {
       $(this).remove();
     });
   }, 2000);
+
+  // Re-activate the Fetch & Calculate button
   $("#fetch-and-calculate .find").show();
 }
