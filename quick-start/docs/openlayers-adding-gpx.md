@@ -44,7 +44,7 @@ To achieve this, we can add some additional lines of code to the `'once'` event 
 First off, we define a variable called *coordinates* whose value is an array of the positions which define the route feature:
 
 ```js
-var coordinates = gpxLayer.getSource().getFeatures()[0].values_.geometry.getCoordinates()[0];
+var coordinates = gpxLayer.getSource().getFeatures()[0].get('geometry').getCoordinates()[0];
 ```
 
 With this array of positions &ndash; we can then take the first and last values from the list to create a couple of point geometry features. These are added to the map through a new vector layer and source definition:
@@ -73,7 +73,7 @@ var layerPoints = new ol.layer.Vector({
 map.addLayer(layerPoints);
 ```
 
-In this instance the styling is returned from a function called `selectStyle` (whose purpose is to take the colour hex value which have been defined as a feature attribute and return a data-driven style object):
+In this instance the styling is returned from a function called `selectStyle` (whose purpose is to take the hexadecimal colour value which has been defined as a feature attribute and return a data-driven style object):
 
 ```js
 /**

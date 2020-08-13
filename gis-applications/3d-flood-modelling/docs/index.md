@@ -5,7 +5,7 @@ products combined with third party datasets to create a rich interactive
 
 <p align="center">
   <video style="outline:none" width="700" poster="https://raw.githubusercontent.com/OrdnanceSurvey/os-data-hub-tutorials/master/gis-applications/3d-flood-modelling/media/image1.png" controls disablepictureinpicture controlslist="nodownload">
-    <source src="/public/os-data-hub-tutorials/dist/gis-applications/3d-flood-modelling/OS_EA_Tutorial.mp4" type="video/mp4">
+    <source src="/public/videos/os-data-hub-tutorials/gis-applications/3d-flood-modelling.mp4" type="video/mp4">
     Your browser does not support HTML5 video.
   </video>
 </p>
@@ -183,5 +183,5 @@ e.g. 5.
 If you create a beautiful 3D model using OS data - let us know!
 
 <em> * The animation featured at the start of the tutorial was exported from Esri ArcGIS Pro (v2.5) which optimises the 3D model as the user navigates around it, meaning it is easier to work with larger and more detailed datasets.  You may notice that the landscape ‘changes’ as more detail is brought into view and the model is rendered for optimum resolution with features further away taking less priority.  The actual outline of the 3D model is directed from using the EA Lidar data which was captured in 2017 and focused on specific areas effected by flooding, hence why the tops of the Mendip Hills have been excluded.
-  
+
 This tutorial is for demonstration purposes only -- flood risk modelling is a complex process that takes into consideration several different factors. </em>  
