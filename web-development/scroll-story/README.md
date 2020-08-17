@@ -2,7 +2,15 @@
 
 We'll learn how to build a map-based scroll story in this tutorial - a powerful way to add location context to other content.
 
-![A vector tile scroll story](./media/os-scroll-story.png)
+<video controls
+    src="https://labs.os.uk/public/videos/os-data-hub-tutorials/web-development/scroll-story.mp4"
+    poster="./media/os-scroll-story.png"
+    width="100%">
+
+  Sorry, your browser doesn't support embedded videos, 
+  but don't worry, you can <a href="https://labs.os.uk/public/videos/os-data-hub-tutorials/web-development/scroll-story.mp4" target="_blank">watch it here</a>.
+
+</video>
 
 ## Tools and APIs
 

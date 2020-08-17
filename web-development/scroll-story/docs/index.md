@@ -4,7 +4,17 @@ With this tutorial we will explore how to tell stories with maps. This is a patt
 
 The story will follow an October ascent of Ben Nevis, Great Britain's tallest mountain.
 
-<p><iframe style="width:100%;height:400px;max-width:1200px;border:1px solid #f5f5f5;" src="/public/os-data-hub-tutorials/dist/web-development/scroll-story/"></iframe></p>
+
+<video controls
+    src="https://labs.os.uk/public/videos/os-data-hub-tutorials/web-development/scroll-story.mp4"
+    poster="/public/os-data-hub-tutorials/dist/web-development/scroll-story/media/os-scroll-story.png"
+    width="100%">
+
+  Sorry, your browser doesn't support embedded videos, 
+  but don't worry, you can <a href="https://labs.os.uk/public/videos/os-data-hub-tutorials/web-development/scroll-story.mp4" target="_blank">watch it here</a>.
+
+</video>
+
 
 ## HTML & CSS
 
