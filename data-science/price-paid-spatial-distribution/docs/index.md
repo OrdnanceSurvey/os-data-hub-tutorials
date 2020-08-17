@@ -1,4 +1,3 @@
-
 # Price Paid Spatial Distribution
 
 *Visualising the spatial distribution of Lower Layer Super Output Area (LSOA) median price paid deciles for residential property sold between 1995 and 2019 for a local authority district (LAD) in England or Wales.*
@@ -56,10 +55,16 @@ Please refer to the section **Via the API** within **How to query the dataset** 
 
 ### Python Environment Setup
 
-* The Python geospatial stack used in this tutorial requires the library [**GeoPandas**](http://geopandas.org/).
+* The Python geospatial stack used in this tutorial requires the library [**GeoPandas**](http://geopandas.org/), [**descartes**](https://pypi.org/project/descartes/), [**mapclassify**](https://pysal.org/mapclassify/) and [**Folium**](https://python-visualization.github.io/folium/).
 * The library **fiona** (Python wrapper around the OGR (vector) component of the [Geospatial Data Abstraction Library (GDAL)](https://gdal.org/) is a dependency of GeoPandas.
 * The libraries **descartes** and **mapclassify** are not hard GeoPandas dependencies or required imports but are both required for the GeoPandas plot functionality used in this notebook.
-* If using the [conda](https://www.anaconda.com/) package manager to create and configure your Python envionment, the libraries **GeoPandas**, **descartes** and **mapclassify** and their dependencies can be installed via: `conda install -n <environment-name> -c conda-forge geopandas descartes mapclassify`
+* If using the [conda](https://www.anaconda.com/) package manager to create and configure your Python envionment, the libraries **GeoPandas**, **descartes** and **mapclassify** and their dependencies can be installed via: `conda install -n <environment-name> geopandas descartes mapclassify folium`
+
+#### Developed using:
+* GeoPandas v0.8.1
+* descartes v1.1.0
+* mapclassify v2.3.0
+* Folium v0.11.0
 
 ## License
 ---
@@ -114,6 +119,7 @@ Contains HM Land Registry data © Crown copyright and database right 2020.
 import fiona
 import folium
 import geopandas as gpd
+import matplotlib as mpl
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
@@ -141,30 +147,30 @@ The ONS Open Geography Portal base path is **https://ons-inspire.esriuk.com**
 
 A [**GetCapabilities**](https://ons-inspire.esriuk.com/arcgis/services/Administrative_Boundaries/Local_Authority_Districts_December_2019_Boundaries_UK_BFE/MapServer/WFSServer?service=wfs&request=GetCapabilities&version=2.0.0) request to the WFS API will return the response codes, content, and parameters of the WFS.
 
-More information regarding the ONS Local Authority Districts product can be found at https://geoportal.statistics.gov.uk/datasets/local-authority-districts-december-2019-boundaries-uk-bfe
+More information regarding the ONS Local Authority Districts product can be found at https://geoportal.statistics.gov.uk/datasets/local-authority-districts-may-2020-boundaries-uk-bfe
 
 
 ```python
 # ONS Open Geography Portal WFS base path: https://ons-inspire.esriuk.com
 # ONS WFS endpoint path: /arcgis/services/Administrative_Boundaries
-#                        /Local_Authority_Districts_December_2019_Boundaries_UK_BFE
+#                        /Local_Authority_Districts_May_2020_Boundaries_UK_BFE
 #                        /MapServer/WFSServer?
 wfs_endpoint = ('https://ons-inspire.esriuk.com/arcgis/services/Administrative_Boundaries'
-                '/Local_Authority_Districts_December_2019_Boundaries_UK_BFE/MapServer/WFSServer?')
+                '/Local_Authority_Districts_May_2020_Boundaries_UK_BFE/MapServer/WFSServer?')
 
 # Define WFS parameters 
 service = 'wfs'
 request = 'GetFeature'
 version = '2.0.0'
-typeNames = ('Administrative_Boundaries_Wards_December_2019_Boundaries_UK_BFC:'
-             'Local_Authority_Districts__December_2019__Full_Extent_Boundaries_UK')
+typeNames = ('Administrative_Boundaries_Local_Authority_Districts_May_2020_Boundaries_UK_BFE:'
+             'Local_Authority_Districts__May_2020__Full_Extent_Boundaries_UK')
 outputFormat = 'GEOJSON'
 srsName = 'EPSG:4326'
 # Define attribute-based filter using OGC WFS filter encoding specification
 # Filter specifies the Government Statistical Service (GSS) Code for the Southampton local authority district area
 filter = ('<ogc:Filter>'
               '<ogc:PropertyIsEqualTo>'
-                  '<ogc:PropertyName>lad19cd</ogc:PropertyName>'
+                  '<ogc:PropertyName>lad20cd</ogc:PropertyName>'
                   '<ogc:Literal>E06000045</ogc:Literal>'
               '</ogc:PropertyIsEqualTo>'
           '</ogc:Filter>')
@@ -179,6 +185,7 @@ params_wfs = {'service':service,
               'filter':filter}
 
 # Make HTTP GET request and raise exception if request was unsuccessful
+# Turn off verification to remove the need to whitelist certificate
 try:
     r = requests.get(wfs_endpoint, params=params_wfs)
     r.raise_for_status()
@@ -208,8 +215,8 @@ y = boundary_centroid.y
 bounds = gdf_boundary['geometry'][0].bounds
 
 # Define a OGC WFS filter compliant bounding box for the polygon geometry
-# bottom-left x, bottom-left y, top-right x, top-right y
-bbox = str(bounds[0]) + ',' + str(bounds[1]) + ',' + str(bounds[2]) + ',' + str(bounds[3])
+# bottom-left y, bottom-left x, top-right y, top-right x
+bbox = str(bounds[1]) + ',' + str(bounds[0]) + ',' + str(bounds[3]) + ',' + str(bounds[2])
 
 # Plot boundary geometry
 ax = gdf_boundary.plot(color='#ff1f5b')
@@ -222,8 +229,13 @@ print('=> Transformed ONS WFS GeoJSON payload into a GeoDataFrame')
     => Transformed ONS WFS GeoJSON payload into a GeoDataFrame
 
 
+    <ipython-input-86-c2e31c31650e>:55: UserWarning: Geometry is in a geographic CRS. Results from 'centroid' are likely incorrect. Use 'GeoSeries.to_crs()' to re-project geometries to a projected CRS before this operation.
+    
+      boundary_centroid = gdf_boundary['geometry'].centroid
 
-![png](https://raw.githubusercontent.com/OrdnanceSurvey/os-data-hub-tutorials/master/data-science/price-paid-spatial-distribution/media/notebook-cell-outputs/step-2-output.png)
+
+
+![png](https://raw.githubusercontent.com/OrdnanceSurvey/os-data-hub-tutorials/master/data-science/price-paid-spatial-distribution/media/notebook-cell-outputs/step-2.png)
 
 
 ## Step 3 ~ Construct a URL path for the OS Maps API ZXY endpoint
@@ -267,6 +279,7 @@ Further OS Maps API examples can be found at https://labs.os.uk/public/os-data-h
 
 <br>
 
+
 <img width="700"
      src="https://raw.githubusercontent.com/OrdnanceSurvey/os-data-hub-tutorials/master/data-science/price-paid-spatial-distribution/media/os-data-hub-os-maps-api-1.png"
      alt="OS Maps API Image 1"
@@ -304,18 +317,10 @@ def highlight(feature):
     return {'weight':3, 
             'color':'#bf1747'}
 
-# Obtain subset of boundary DataFrame
-gdf_boundary_subset = gdf_boundary[['lad19cd', 'lad19nm']]
-
-# Transform DataFrame subset to HTML table
-html = gdf_boundary_subset.to_html(classes='table table-striped table-hover table-condensed table-responsive')
-
-# Pass HTML table to Folium popup
-popup = folium.Popup(html)
-
 # Define feature layer using boundary GeoJSON returned by WFS
 overlay = folium.GeoJson(payload, 
-                         name=gdf_boundary['lad19nm'],
+                         popup=folium.GeoJsonPopup(fields=['lad20cd', 'lad20nm']),
+                         name=gdf_boundary['lad20nm'],
                          style_function=style,
                          highlight_function=highlight)
 
@@ -323,9 +328,6 @@ overlay = folium.GeoJson(payload,
 logo_url = 'https://labs.os.uk/public/os-api-branding/v0.1.0/img/os-logo-maps.svg'
 # Folium FloatImage plugin for displaying an image on the map
 float_image = FloatImage(logo_url, bottom=1, left=1)
-
-# Add popup to map
-popup.add_to(overlay)
 
 # Add feature layer to map
 overlay.add_to(m)
@@ -351,7 +353,7 @@ We will subsequently:
 * Transform the postcode strings such that each string has a single space between the outward and inward codes.
 * Request the historical HM LR Price Paid Data for the LAD boundary using the transformed postcode strings associated with the postcode geometries returned from the containment query.
 
-Using a dataset like Code-Point Open providing current postcodes will serve more than adequently to obtain historical Price Paid Data but in order to obtain the best coverage possible, it may be worth considering using a dataset which lists historical postcodes which are no longer in use such as the [ONS National Statistics Postcode Lookup (NSPL](https://geoportal.statistics.gov.uk/datasets/national-statistics-postcode-lookup-august-2019). The latest NSPL (August 2019) is not available via an API.
+Using a dataset like Code-Point Open providing current postcodes will serve more than adequently to obtain historical Price Paid Data but in order to obtain the best coverage possible, it may be worth considering using a dataset which lists historical postcodes which are no longer in use such as the [ONS National Statistics Postcode Lookup (NSPL](https://geoportal.statistics.gov.uk/search?collection=Dataset&sort=name&tags=all(PRD_NSPL)). At the time of writing the NSPL is not available via an API.
 
 
 ```python
@@ -428,9 +430,9 @@ print('\n=> Extracted GeoPackage in data directory from Code-Point Open zipfile'
 !du -a code-point-open
 ```
 
-    260352	code-point-open/data/codepo_gb.gpkg
-    260352	code-point-open/data
-    260352	code-point-open
+    261168	code-point-open/data/codepo_gb.gpkg
+    261168	code-point-open/data
+    261168	code-point-open
 
 
 
@@ -458,7 +460,7 @@ gdf_pcd.crs = BNG
 
 # Transform the CRS from BNG to WGS84
 # Reprojection required so that geometries in pipeline share a common CRS
-gdf_pcd = gdf_pcd.to_crs(WGS84)
+gdf_pcd = gdf_pcd.to_crs(crs=WGS84)
 
 # Display the head of the GeoDataFrame
 gdf_pcd.head()
@@ -498,7 +500,7 @@ gdf_pcd.head()
   </thead>
   <tbody>
     <tr>
-      <td>0</td>
+      <th>0</th>
       <td>AB101AB</td>
       <td>10</td>
       <td>S92000003</td>
@@ -507,10 +509,10 @@ gdf_pcd.head()
       <td>None</td>
       <td>S12000033</td>
       <td>S13002842</td>
-      <td>POINT (-2.096915928068507 57.14960585555134)</td>
+      <td>POINT (-2.09692 57.14959)</td>
     </tr>
     <tr>
-      <td>1</td>
+      <th>1</th>
       <td>AB101AF</td>
       <td>10</td>
       <td>S92000003</td>
@@ -519,10 +521,10 @@ gdf_pcd.head()
       <td>None</td>
       <td>S12000033</td>
       <td>S13002842</td>
-      <td>POINT (-2.097806028257344 57.14870686193719)</td>
+      <td>POINT (-2.09781 57.14869)</td>
     </tr>
     <tr>
-      <td>2</td>
+      <th>2</th>
       <td>AB101AG</td>
       <td>10</td>
       <td>S92000003</td>
@@ -531,10 +533,10 @@ gdf_pcd.head()
       <td>None</td>
       <td>S12000033</td>
       <td>S13002842</td>
-      <td>POINT (-2.096997150706968 57.14906681195888)</td>
+      <td>POINT (-2.09700 57.14905)</td>
     </tr>
     <tr>
-      <td>3</td>
+      <th>3</th>
       <td>AB101AH</td>
       <td>10</td>
       <td>S92000003</td>
@@ -543,10 +545,10 @@ gdf_pcd.head()
       <td>None</td>
       <td>S12000033</td>
       <td>S13002842</td>
-      <td>POINT (-2.094664298614741 57.1480804670969)</td>
+      <td>POINT (-2.09467 57.14806)</td>
     </tr>
     <tr>
-      <td>4</td>
+      <th>4</th>
       <td>AB101AL</td>
       <td>10</td>
       <td>S92000003</td>
@@ -555,7 +557,7 @@ gdf_pcd.head()
       <td>None</td>
       <td>S12000033</td>
       <td>S13002842</td>
-      <td>POINT (-2.095411777356433 57.14954413030915)</td>
+      <td>POINT (-2.09542 57.14953)</td>
     </tr>
   </tbody>
 </table>
@@ -697,32 +699,32 @@ gdf_lsoa.head()
   </thead>
   <tbody>
     <tr>
-      <td>0</td>
-      <td>POLYGON ((-1.4091 50.9138, -1.4091 50.9136, -1...</td>
+      <th>0</th>
+      <td>POLYGON ((-1.40910 50.91380, -1.40910 50.91360...</td>
       <td>E01017136</td>
       <td>Southampton 023A</td>
     </tr>
     <tr>
-      <td>1</td>
-      <td>POLYGON ((-1.4068 50.9145, -1.4068 50.9148, -1...</td>
+      <th>1</th>
+      <td>POLYGON ((-1.40680 50.91450, -1.40680 50.91480...</td>
       <td>E01017137</td>
       <td>Southampton 023B</td>
     </tr>
     <tr>
-      <td>2</td>
-      <td>POLYGON ((-1.4065 50.9166, -1.4073 50.9166, -1...</td>
+      <th>2</th>
+      <td>POLYGON ((-1.40650 50.91660, -1.40730 50.91660...</td>
       <td>E01017138</td>
       <td>Southampton 023C</td>
     </tr>
     <tr>
-      <td>3</td>
-      <td>POLYGON ((-1.3978 50.9078, -1.3982 50.908, -1....</td>
+      <th>3</th>
+      <td>POLYGON ((-1.39780 50.90780, -1.39820 50.90800...</td>
       <td>E01017139</td>
       <td>Southampton 029A</td>
     </tr>
     <tr>
-      <td>4</td>
-      <td>POLYGON ((-1.4126 50.9119, -1.4139 50.9122, -1...</td>
+      <th>4</th>
+      <td>POLYGON ((-1.41260 50.91190, -1.41390 50.91220...</td>
       <td>E01017140</td>
       <td>Southampton 023D</td>
     </tr>
@@ -733,7 +735,7 @@ gdf_lsoa.head()
 
 
 
-![png](https://raw.githubusercontent.com/OrdnanceSurvey/os-data-hub-tutorials/master/data-science/price-paid-spatial-distribution/media/notebook-cell-outputs/step-10-output.png)
+![png](https://raw.githubusercontent.com/OrdnanceSurvey/os-data-hub-tutorials/master/data-science/price-paid-spatial-distribution/media/notebook-cell-outputs/step-10.png)
 
 
 ## Step 11 ~ Plot LSOA boundaries returned by the ONS Open Geography Portal ESRI ArcGIS REST API on an OS Maps API backed slippy map
@@ -746,7 +748,7 @@ The example below overlays the GeoJSON feature(s) returned by the ONS ESRI ArcGI
 
 <img width="700"
      src="https://raw.githubusercontent.com/OrdnanceSurvey/os-data-hub-tutorials/master/data-science/price-paid-spatial-distribution/media/os-data-hub-os-maps-api-2.png"
-     alt="OS Maps API Image 1"
+     alt="OS Maps API Image 2"
      align="centre" />
 
 
@@ -772,17 +774,9 @@ def highlight(feature):
     return {'weight':3, 
             'color':'#bf1747'}
 
-# Obtain subset of LSOA DataFrame
-gdf_lsoa_subset = gdf_lsoa[['lsoa11cd', 'lsoa11nm']]
-
-# Transform DataFrame subset to HTML table
-html = gdf_lsoa_subset.to_html(classes='table table-striped table-hover table-condensed table-responsive')
-
-# Pass HTML table to Folium popup
-popup = folium.Popup(html)
-
 # Define feature layer using LSOA GeoJSON returned by ONS ESRI ArcGIS REST API
 overlay = folium.GeoJson(payload, 
+                         popup=folium.GeoJsonPopup(fields=['lsoa11cd', 'lsoa11nm']), 
                          name='LSOA',
                          style_function=style,
                          highlight_function=highlight)
@@ -791,9 +785,6 @@ overlay = folium.GeoJson(payload,
 logo_url = 'https://labs.os.uk/public/os-api-branding/v0.1.0/img/os-logo-maps.svg'
 # Folium FloatImage plugin for displaying an image on the map
 float_image = FloatImage(logo_url, bottom=1, left=1)
-
-# Add popup to map
-popup.add_to(overlay)
 
 # Add feature layer to map
 overlay.add_to(m)
@@ -828,7 +819,7 @@ print('=> Count of intersecting postcodes within Southampton boundary: {}\n'.for
 gdf_lsoa_pcd.head()
 ```
 
-    => Count of intersecting postcodes within Southampton boundary: 5806
+    => Count of intersecting postcodes within Southampton boundary: 5807
     
 
 
@@ -862,41 +853,41 @@ gdf_lsoa_pcd.head()
   </thead>
   <tbody>
     <tr>
-      <td>1384030</td>
+      <th>1389605</th>
       <td>SO140AA</td>
-      <td>POINT (-1.39997565531718 50.9070538321384)</td>
+      <td>POINT (-1.39985 50.90704)</td>
       <td>3</td>
       <td>E01017139</td>
       <td>Southampton 029A</td>
     </tr>
     <tr>
-      <td>1384031</td>
+      <th>1389606</th>
       <td>SO140AB</td>
-      <td>POINT (-1.398580897219752 50.90712759143369)</td>
+      <td>POINT (-1.39857 50.90712)</td>
       <td>3</td>
       <td>E01017139</td>
       <td>Southampton 029A</td>
     </tr>
     <tr>
-      <td>1384046</td>
+      <th>1389621</th>
       <td>SO140AY</td>
-      <td>POINT (-1.400374668198236 50.90699293377028)</td>
+      <td>POINT (-1.40037 50.90698)</td>
       <td>3</td>
       <td>E01017139</td>
       <td>Southampton 029A</td>
     </tr>
     <tr>
-      <td>1384159</td>
+      <th>1389734</th>
       <td>SO140NF</td>
-      <td>POINT (-1.401021248125429 50.90758975489555)</td>
+      <td>POINT (-1.40101 50.90758)</td>
       <td>3</td>
       <td>E01017139</td>
       <td>Southampton 029A</td>
     </tr>
     <tr>
-      <td>1384197</td>
+      <th>1389772</th>
       <td>SO140RB</td>
-      <td>POINT (-1.401021248125429 50.90758975489555)</td>
+      <td>POINT (-1.40101 50.90758)</td>
       <td>3</td>
       <td>E01017139</td>
       <td>Southampton 029A</td>
@@ -935,11 +926,11 @@ gdf_lsoa_pcd['Postcode'].head()
 
 
 
-    1384030    SO14 0AA
-    1384031    SO14 0AB
-    1384046    SO14 0AY
-    1384159    SO14 0NF
-    1384197    SO14 0RB
+    1389605    SO14 0AA
+    1389606    SO14 0AB
+    1389621    SO14 0AY
+    1389734    SO14 0NF
+    1389772    SO14 0RB
     Name: Postcode, dtype: object
 
 
@@ -950,41 +941,48 @@ gdf_lsoa_pcd['Postcode'].head()
 
 The example below querys the HM LR Linked Data API to return the historical Price Paid Data for all the postcodes represented in the psotcode-LSOA DataFrame. The Price Paid Data is returned on a postcode-by-postcode basis. 
 
-Each page of the HM LR Price Paid Data API returns a maximum of 10 transaction records per postcode. Therefore, in order to obtain all the historical transactions for a given postcode we need to page through the results using the `_page` parameter. The example assumes a that a single postcode has had no more than 500 transactions since 1995.
+Each page of the HM LR Price Paid Data API returns a maximum of 10 transaction records per postcode. Therefore, in order to obtain all the historical transactions for a given postcode we need to page through the results using the `_page` parameter. The example assumes a that a single postcode has had no more than 400 transactions since 1995.
 
 The `transactionDate` key value describing the date upon which a property transaction took place is transformed into a Python datetime object assuming the following date time structure:
 
 *Wed, 07 Mar 2001 => '%a, %d %b %Y' => Weekday as locale’s abbreviated name, Day of the month as a zero-padded decimal number, Month as locale’s abbreviated name year and Year with century as a decimal number*.
 
-**The process of obtaining all the historical Price Paid Data for a LAD boundary in England or Wales via the HM LR Linked Data API can take some time ~ 1 hour**
+**The process of obtaining all the historical Price Paid Data for a LAD boundary in England or Wales via the HM LR Linked Data API can take some time ~ 40 mins**
 
 Please refer to the section **Via the API** within **How to query the dataset** at http://landregistry.data.gov.uk/app/root/doc/ppd for information regarding access to the Price Paid Data through the Linked Data API.
 
 
 ```python
-# Land Registry (LR) Price Paid Data API base path: http://landregistry.data.gov.uk
+# Land Registry (LR) Price Paid Data API base path: https://landregistry.data.gov.uk
 # LR Price Paid Data API endpoint path: /data/ppi/transaction-record.json?
-lr_end_point = 'http://landregistry.data.gov.uk/data/ppi/transaction-record.json?'
+lr_end_point = 'https://landregistry.data.gov.uk/data/ppi/transaction-record.json?'
+
+# Define API parameters 
+# Maximum number of transaction records returned per request
+_pageSize = 200
+_view = 'basic'
+# Price Paid Data subset
+_properties = 'transactionId,transactionDate,pricePaid,propertyAddress.postcode'
 
 # Create empty list to be populated with price paid transactions
 data = []
-
-# Define price paid JSON payload keys to extract
-keys = ['propertyAddress', 'transactionId', 'pricePaid', 'transactionDate']
 
 # LR Price Paid API returns a maximum of ten transactions per page
 # For each postcode in the Southampton local authority district boundary return all price paid transactions
 # Page through the results moving onto the next postcode when no more transactions are returned
 # Iterate over the LSOA-postcode DataFrame
 for index, row in gdf_lsoa_pcd.iterrows():   
-    # Assume that a single postcode has had no more than 500 transactions since 1995
-    for i in range(0, 50):  
+    # Assume that a single postcode has had no more than 400 transactions since 1995
+    for i in range(0, 2):  
         # Obtain postcode from lsoa-postcode DataFrame
         propertyAddresspostcode = row['Postcode']
         # Page through the API results
         _page = i
         # Represent LR Price Paid API parameters in a dictionary
-        params_lr = {'propertyAddress.postcode':propertyAddresspostcode,
+        params_lr = {'_pageSize':_pageSize, 
+                     '_view':_view,
+                     '_properties':_properties,
+                     'propertyAddress.postcode':propertyAddresspostcode,
                      '_page':_page}
         # Make HTTP GET request and raise exception if request was unsuccessful
         try:
@@ -1004,21 +1002,16 @@ for index, row in gdf_lsoa_pcd.iterrows():
             for j in range(0, len(payload['result']['items'])):
                 # Get each transaction record     
                 feature = payload['result']['items'][j]
-                # Obtain subset of transaction data
-                key_dict = {key:feature[key] for key in keys}
                 # Obtain postcode from transaction property address
-                key_dict['postcode'] = key_dict['propertyAddress']['postcode']
-                # Delete property address from data
-                del key_dict['propertyAddress']
+                feature['postcode'] = feature['propertyAddress']['postcode']
                 # Append data to data list
-                data.append(key_dict)
+                data.append(feature)
 
 # Convert data list into DataFrame
-df_ppd = pd.DataFrame(data)
+df_ppd = pd.DataFrame(data)[['transactionId', 'pricePaid', 'transactionDate', 'postcode']]
 
 # Define date format function 
 # Required to transform date into Python date-time type
-# 
 date_format = lambda x:datetime.strptime(x, '%a, %d %b %Y')
 
 # Update transactionDate field by applying date format function
@@ -1057,35 +1050,35 @@ df_ppd.head()
   </thead>
   <tbody>
     <tr>
-      <td>0</td>
+      <th>0</th>
       <td>36730F39-F3CD-4C36-A2F0-1CBC84718B39</td>
       <td>145000</td>
       <td>2005-11-03</td>
       <td>SO14 0AA</td>
     </tr>
     <tr>
-      <td>1</td>
+      <th>1</th>
       <td>0D709D01-D248-41F1-B16B-424CA2E760AF</td>
       <td>145000</td>
       <td>2005-11-03</td>
       <td>SO14 0AA</td>
     </tr>
     <tr>
-      <td>2</td>
+      <th>2</th>
       <td>BAAD42C6-AA07-441D-AC04-5E2468C6A4DB</td>
       <td>145000</td>
       <td>2005-11-03</td>
       <td>SO14 0AA</td>
     </tr>
     <tr>
-      <td>3</td>
+      <th>3</th>
       <td>09BF4CFD-3F1B-4933-8A7D-71E4F022E3BF</td>
       <td>145000</td>
       <td>2005-11-03</td>
       <td>SO14 0AA</td>
     </tr>
     <tr>
-      <td>4</td>
+      <th>4</th>
       <td>39552709-7B6A-42BE-AAD2-8AE7261C7769</td>
       <td>145000</td>
       <td>2005-11-03</td>
@@ -1110,10 +1103,10 @@ df_lsoa_ppd = pd.merge(gdf_lsoa_pcd,
                        right_on='postcode',
                        how='inner')
 
-# Create new DataFrame field year_group
+# Create new DataFrame column year_group
 df_lsoa_ppd['year_group'] = ''
 
-# Update year_group field to represent the 5-year time period a transaction was made in
+# Update year_group field to represent the six-year time period a transaction was made in
 df_lsoa_ppd.loc[df_lsoa_ppd['transactionDate'] <= '2001-12-31', 'year_group'] = '1995 - 2001' 
 
 df_lsoa_ppd.loc[(df_lsoa_ppd['transactionDate'] >= '2001-01-01') & 
@@ -1126,7 +1119,8 @@ df_lsoa_ppd.loc[(df_lsoa_ppd['transactionDate'] >= '2013-01-01') &
                (df_lsoa_ppd['transactionDate'] <= '2019-12-31'), 'year_group'] = '2013 - 2019'
 
 # Calculate the median price paid by LSOA by year_group
-df_lsoa_ppd_yg = df_lsoa_ppd.groupby(['year_group', 'lsoa11cd'])[['pricePaid']].median()
+df_lsoa_ppd_yg = (df_lsoa_ppd[df_lsoa_ppd['year_group']!='']
+                  .groupby(['year_group', 'lsoa11cd'])[['pricePaid']].median())
 
 # Display head of median LSOA-year group price paid DataFrame
 df_lsoa_ppd_yg.head()
@@ -1164,24 +1158,24 @@ df_lsoa_ppd_yg.head()
   </thead>
   <tbody>
     <tr>
-      <td rowspan="5" valign="top">1995 - 2001</td>
-      <td>E01017136</td>
+      <th rowspan="5" valign="top">1995 - 2001</th>
+      <th>E01017136</th>
       <td>93250.0</td>
     </tr>
     <tr>
-      <td>E01017137</td>
+      <th>E01017137</th>
       <td>72250.0</td>
     </tr>
     <tr>
-      <td>E01017138</td>
+      <th>E01017138</th>
       <td>63225.0</td>
     </tr>
     <tr>
-      <td>E01017139</td>
+      <th>E01017139</th>
       <td>45500.0</td>
     </tr>
     <tr>
-      <td>E01017140</td>
+      <th>E01017140</th>
       <td>40000.0</td>
     </tr>
   </tbody>
@@ -1200,7 +1194,7 @@ The OS Data Hub WFS returns a maximum of 100 features per request. Therefore, in
 
 The request parameters below look to return the features in **GeoJSON** format using the **WGS-84 (EPSG: 4326)** coordinate reference system.
 
-The OS Data Hub API base path is **https://osdatahubapi.os.uk**
+The OS API base path is **https://api.os.uk**
 
 The [technical specification](https://osdatahub.os.uk/docs/wfs/technicalSpecification) for the OS Features API outlines the response codes, content, and parameters of the WFS.
 
@@ -1208,8 +1202,8 @@ Further WFS examples can be found at https://labs.os.uk/public/os-data-hub-examp
 
 
 ```python
-# OS Data Hub WFS endpoint path: /OSFeaturesAPI/wfs/v1?
-wfs_endpoint = 'https://osdatahubapi.os.uk/OSFeaturesAPI/wfs/v1?'
+# OS Data Hub WFS endpoint path: /features/v1/wfs?
+wfs_endpoint = 'https://api.os.uk/features/v1/wfs?'
 
 # Define WFS parameters
 key = key
@@ -1282,7 +1276,7 @@ print('=> Transformed OS Data Hub WFS GeoJSON payload into a GeoDataFrame')
 
 
 
-![png](https://raw.githubusercontent.com/OrdnanceSurvey/os-data-hub-tutorials/master/data-science/price-paid-spatial-distribution/media/notebook-cell-outputs/step-16-output.png)
+![png](https://raw.githubusercontent.com/OrdnanceSurvey/os-data-hub-tutorials/master/data-science/price-paid-spatial-distribution/media/notebook-cell-outputs/step-16.png)
 
 
 ## Step 17 ~ Spatially join and compute the intersection between building polygon geometries and LSOA polygon geometries and, dissolve the resultant buidling features by LSOA code to form an aggregate building geometry per LSOA
@@ -1342,24 +1336,24 @@ gdf_build_lsoa_diss.head()
   </thead>
   <tbody>
     <tr>
-      <td>E01017136</td>
-      <td>(POLYGON ((-1.410814230645752 50.9090785576614...</td>
+      <th>E01017136</th>
+      <td>MULTIPOLYGON (((-1.40879 50.90917, -1.40872 50...</td>
     </tr>
     <tr>
-      <td>E01017137</td>
-      <td>(POLYGON ((-1.410881112512585 50.9106648900100...</td>
+      <th>E01017137</th>
+      <td>MULTIPOLYGON (((-1.41386 50.91270, -1.41386 50...</td>
     </tr>
     <tr>
-      <td>E01017138</td>
-      <td>(POLYGON ((-1.415566666034249 50.9107999971541...</td>
+      <th>E01017138</th>
+      <td>MULTIPOLYGON (((-1.41499 50.91003, -1.41500 50...</td>
     </tr>
     <tr>
-      <td>E01017139</td>
-      <td>(POLYGON ((-1.399070798319615 50.9004658403360...</td>
+      <th>E01017139</th>
+      <td>MULTIPOLYGON (((-1.39895 50.90064, -1.39897 50...</td>
     </tr>
     <tr>
-      <td>E01017140</td>
-      <td>(POLYGON ((-1.409737269613304 50.8982136519334...</td>
+      <th>E01017140</th>
+      <td>MULTIPOLYGON (((-1.41077 50.89886, -1.41091 50...</td>
     </tr>
   </tbody>
 </table>
@@ -1422,39 +1416,39 @@ gdf_lsoa_ppd_yg_build.head()
   </thead>
   <tbody>
     <tr>
-      <td>0</td>
+      <th>0</th>
       <td>1995 - 2001</td>
       <td>E01017136</td>
       <td>93250.0</td>
-      <td>(POLYGON ((-1.410814230645752 50.9090785576614...</td>
+      <td>MULTIPOLYGON (((-1.40879 50.90917, -1.40872 50...</td>
     </tr>
     <tr>
-      <td>1</td>
+      <th>1</th>
       <td>2001 - 2007</td>
       <td>E01017136</td>
       <td>163000.0</td>
-      <td>(POLYGON ((-1.410814230645752 50.9090785576614...</td>
+      <td>MULTIPOLYGON (((-1.40879 50.90917, -1.40872 50...</td>
     </tr>
     <tr>
-      <td>2</td>
+      <th>2</th>
       <td>2007 - 2013</td>
       <td>E01017136</td>
       <td>195000.0</td>
-      <td>(POLYGON ((-1.410814230645752 50.9090785576614...</td>
+      <td>MULTIPOLYGON (((-1.40879 50.90917, -1.40872 50...</td>
     </tr>
     <tr>
-      <td>3</td>
+      <th>3</th>
       <td>2013 - 2019</td>
       <td>E01017136</td>
-      <td>221750.0</td>
-      <td>(POLYGON ((-1.410814230645752 50.9090785576614...</td>
+      <td>221000.0</td>
+      <td>MULTIPOLYGON (((-1.40879 50.90917, -1.40872 50...</td>
     </tr>
     <tr>
-      <td>4</td>
+      <th>4</th>
       <td>1995 - 2001</td>
       <td>E01017137</td>
       <td>72250.0</td>
-      <td>(POLYGON ((-1.410881112512585 50.9106648900100...</td>
+      <td>MULTIPOLYGON (((-1.41386 50.91270, -1.41386 50...</td>
     </tr>
   </tbody>
 </table>
@@ -1466,7 +1460,30 @@ gdf_lsoa_ppd_yg_build.head()
 
 ---
 
-The [matplotlib colour map](https://matplotlib.org/examples/color/colormaps_reference.html) used to visualise the spatial distribution in LSOA median price paid decile assigns the bottom decile (lowest median price paid values) to a transparent red colour and the top decile (highest median price paid values) to a purple colour.
+The example below creates a Matplotlib color map from an [OS GeoDataViz colour palette](https://github.com/OrdnanceSurvey/GeoDataViz-Toolkit/blob/master/Colours/GDV%20colour%20palettes%200.7.pdf). The color map is subsequently used to visualise the spatial distribution in LSOA median price paid decile. The bottom decile (lowest median price paid values) are assigned to a pale yellow colour and the top decile (highest median price paid values) to a deep purple colour.
+
+
+```python
+# OS GeoDataViz colour palettes JSON file hosted on GitHub
+# Raw GitHub domain used to serve JSON file
+gdv_colours_url = 'https://raw.githubusercontent.com/OrdnanceSurvey/GeoDataViz-Toolkit/master/Colours/GDV-colour-palettes-v0.7.json'
+
+# Make HTTP GET request and decode JSON
+gdv_colours = requests.get(gdv_url).json()
+
+# Specify the sequential multi-hue 2 palette
+seq_m2 = gdv_colours['sequential']['m2']
+
+# Create Matplotlib color map from GeoDataViz palette
+cmap = mpl.colors.LinearSegmentedColormap.from_list('', seq_m2)
+
+print('=> Sequential multi-hue 2 palette: ')
+print(*seq_m2)
+```
+
+    => Sequential multi-hue 2 palette: 
+    #FCE1A4 #FABF7B #F08F6E #E05C5C #D12959 #AB1866 #6E005F
+
 
 
 ```python
@@ -1491,7 +1508,7 @@ for i, value in enumerate(yg_distinct):
                                               scheme='Quantiles', 
                                               k=10, 
                                               linewidth=0, 
-                                              cmap='RdPu')
+                                              cmap=cmap)
     # Turn plot axes off
     ax[i].axis('off')
     # Display a title for each subplot corresponding to the year_group
@@ -1512,7 +1529,7 @@ plt.suptitle('LSOA Median Price Paid Decile by Six Year Windows', fontsize=20)
 
 
 
-![png](https://raw.githubusercontent.com/OrdnanceSurvey/os-data-hub-tutorials/master/data-science/price-paid-spatial-distribution/media/notebook-cell-outputs/step-19-output.png)
+![png](https://raw.githubusercontent.com/OrdnanceSurvey/os-data-hub-tutorials/master/data-science/price-paid-spatial-distribution/media/notebook-cell-outputs/step-19.png)
 
 
 ## Step 20 ~ Visualise the change in LSOA median price paid decile between 1995 - 2001 and 2013 - 2019 for LSOAs where the decile position has increased or decreased by two or more places
@@ -1521,11 +1538,32 @@ plt.suptitle('LSOA Median Price Paid Decile by Six Year Windows', fontsize=20)
 
 
 ```python
+# Define custom colour palette for plot using OS GeoDataViz sequential single-hue palettes
+li = [gdv_colours['sequential']['s3'][6],
+      gdv_colours['sequential']['s3'][4],
+      gdv_colours['sequential']['s3'][2],
+      gdv_colours['sequential']['s1'][2],
+      gdv_colours['sequential']['s1'][4]]
+      
+# Create Matplotlib color map from palette
+cmap = mpl.colors.LinearSegmentedColormap.from_list('', li)
+
+print('=> Palette: ')
+print(*li)
+```
+
+    => Palette: 
+    #8F003B #E32977 #ED85B0 #9EC9E2 #3C93C2
+
+
+
+```python
 # Define ntile function deriving LSOA median price paid decile by year_group
 ntile = lambda x: pd.qcut(x, q=10, labels=list(range(1, 11)))
 
 # Apply ntile function
 gdf_lsoa_ppd_yg_build['decile'] = gdf_lsoa_ppd_yg_build.groupby(['year_group'])['pricePaid'].transform(ntile)
+gdf_lsoa_ppd_yg_build['decile'] = pd.to_numeric(gdf_lsoa_ppd_yg_build['decile'])
 
 # Obtain data pertaining to the year_group value '1995 - 2000'
 df_yg_1995_2001 = gdf_lsoa_ppd_yg_build[gdf_lsoa_ppd_yg_build['year_group']=='1995 - 2001']
@@ -1565,7 +1603,7 @@ cax = divider.append_axes('right', size='2%', pad=0.1)
 # Plot LSOAs which have moved two or more deciles ontop of the contextual base
 # Red represents decile decrease
 # Blue represents decile increase
-gdf_yg_merge_churn.plot(ax=base, column=df_yg_merge_churn['decile_change'], cmap='RdBu', legend=True, cax=cax)
+gdf_yg_merge_churn.plot(ax=base, column=df_yg_merge_churn['decile_change'], cmap=cmap, legend=True, cax=cax)
 
 # Turn plot axis off
 base.axis('off')
@@ -1577,10 +1615,10 @@ base.set_title('Change in LSOA Median Price Paid Decile 1995 - 2001 vs 2013 - 20
 
 
 
-    Text(0.5, 1, 'Change in LSOA Median Price Paid Decile 1995 - 2001 vs 2013 - 2019')
+    Text(0.5, 1.0, 'Change in LSOA Median Price Paid Decile 1995 - 2001 vs 2013 - 2019')
 
 
 
 
-![png](https://raw.githubusercontent.com/OrdnanceSurvey/os-data-hub-tutorials/master/data-science/price-paid-spatial-distribution/media/notebook-cell-outputs/step-20-output.png)
+![png](https://raw.githubusercontent.com/OrdnanceSurvey/os-data-hub-tutorials/master/data-science/price-paid-spatial-distribution/media/notebook-cell-outputs/step-20.png)
 
