@@ -4,16 +4,16 @@ With this tutorial we will explore how to tell stories with maps. This is a patt
 
 The story will follow an October ascent of Ben Nevis, Great Britain's tallest mountain.
 
+<p align="center">
+  <video style="outline:none" width="700" poster="https://raw.githubusercontent.com/OrdnanceSurvey/os-data-hub-tutorials/master/web-development/scroll-story/media/os-scroll-story.png" controls disablepictureinpicture controlslist="nodownload">
+    <source     
+    src="/public/videos/os-data-hub-tutorials/web-development/scroll-story.mp4" type="video/mp4">
+    Your browser does not support HTML5 video.
+  </video>
+</p>
 
-<video controls
-    src="https://labs.os.uk/public/videos/os-data-hub-tutorials/web-development/scroll-story.mp4"
-    poster="/public/os-data-hub-tutorials/dist/web-development/scroll-story/media/os-scroll-story.png"
-    width="100%">
+<em>A vector tile scroll story showing a climb up Ben Nevis.</em>  
 
-  Sorry, your browser doesn't support embedded videos, 
-  but don't worry, you can <a href="https://labs.os.uk/public/videos/os-data-hub-tutorials/web-development/scroll-story.mp4" target="_blank">watch it here</a>.
-
-</video>
 
 
 ## HTML & CSS
