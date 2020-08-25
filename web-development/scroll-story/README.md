@@ -4,10 +4,8 @@ We'll learn how to build a map-based scroll story in this tutorial - a powerful 
 
 <p align="center">
   <img width="700" src="./media/os-scroll-story.png" alt="Image of vector tile scroll story" /><br>
-  <em>A scroll story with the OS Vector Tile API (click <a href="https://labs.os.uk/public/videos/os-data-hub-tutorials/web-development/scroll-story.mp4" target="_blank">here</a> to view animation)</em>
+  <em>A scroll story with the OS Vector Tile API (click <a href="https://labs.os.uk/public/videos/os-data-hub-tutorials/web-development/scroll-story.mp4" target="_blank">here</a> to view animation, or <a href="https://labs.os.uk/public/os-data-hub-tutorials/dist/web-development/scroll-story/" target="_blank">here</a> for a full-screen demo.)</em>
 </p>
-
-
 
 ## Tools and APIs
 

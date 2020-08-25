@@ -12,9 +12,7 @@ The story will follow an October ascent of Ben Nevis, Great Britain's tallest mo
   </video>
 </p>
 
-<em>A vector tile scroll story showing a climb up Ben Nevis.</em>  
-
-
+<em>A vector tile scroll story showing a climb up Ben Nevis. Click <a href="https://labs.os.uk/public/os-data-hub-tutorials/dist/web-development/scroll-story/" target="_blank">here</a> for a full-screen demo.</em>
 
 ## HTML & CSS
 
