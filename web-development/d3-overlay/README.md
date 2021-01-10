@@ -22,7 +22,7 @@ Our `index.html` file for this project is very, very simple: we load libraries a
 
 With Mapbox GL JS, first we'll create a basemap with vector tiles served from the OS Vector Tile API. Since our focus is on the D3 overlay, we won't go into this code in depth - you can find it on our [Examples page](https://labs.os.uk/public/os-data-hub-examples/os-vector-tile-api/vts-3857-basic-map).
 
-One adjustment though: we want our basemap in greyscale, so we can distinguish the overlaid features more easily. The ability to customise style is a major advantage of vector tiles. So, when we instantiate a new `mapboxgl.Map` object, we include a [custom style](https://labs.os.uk/public/os-data-hub-examples/dist/os-vector-tile-api/styles/greyscale.json):
+One adjustment though: we want our basemap in greyscale, so we can distinguish the overlaid features more easily. The ability to customise style is a major advantage of vector tiles. So, when we instantiate a new `mapboxgl.Map` object, we include a [custom style](https://github.com/OrdnanceSurvey/OS-Vector-Tile-API-Stylesheets/blob/master/OS_VTS_3857_Open_Greyscale.json):
 
 ```javascript
 const config = { apikey: "YOUR_KEY_HERE" };
@@ -36,7 +36,7 @@ const endpoints = {
 map = new mapboxgl.Map({
   container: "map",
   style:
-    "https://labs.os.uk/public/os-data-hub-examples/dist/os-vector-tile-api/styles/greyscale.json",
+    "https://raw.githubusercontent.com/OrdnanceSurvey/OS-Vector-Tile-API-Stylesheets/master/OS_VTS_3857_Open_Greyscale.json",
   center: [-0.13806, 51.55223],
   zoom: 9,
   transformRequest: (url) => {

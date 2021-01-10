@@ -9,7 +9,7 @@ const endpoints = {
 var map = new mapboxgl.Map({
   container: "map",
   style:
-    "https://labs.os.uk/public/os-data-hub-examples/dist/os-vector-tile-api/styles/greyscale.json",
+    "https://raw.githubusercontent.com/OrdnanceSurvey/OS-Vector-Tile-API-Stylesheets/master/OS_VTS_3857_Open_Greyscale.json",
   center: [-0.13806, 51.55223],
   zoom: 9,
   transformRequest: (url) => {
