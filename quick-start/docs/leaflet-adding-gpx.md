@@ -87,4 +87,4 @@ var endMarker = L.marker(endPoint, { icon: endIcon }).addTo(map);
 
 NOTE: The start and end coordinates are passed to the `getLatLng()` function to ensure that the value only contains a latitude and longitude [in that order]. It is possible that the position might include elevation as an optional third value &ndash; which is unsupported when creating a Leaflet marker icon.
 
-That's it! You can view the full version [here](/public/os-data-hub-tutorials/dist/quick-start/leaflet-adding-gpx.php).
+That's it! You can access the full version [here](/public/os-data-hub-tutorials/dist/quick-start/leaflet-adding-gpx.php) (or view the [source code](/public/os-data-hub-tutorials/dist/quick-start/source-view.html#leaflet-adding-gpx) if you prefer).

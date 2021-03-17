@@ -65,7 +65,7 @@ map.on('load', function() {
 
 The various geometry types can then be added a styled layers by filtering the appropriate features from the FeatureCollection.
 
-Points are added as follows: 
+Points are added as follows:
 
 ```js
 map.on('load', function() {
@@ -202,4 +202,4 @@ var popup = new mapboxgl.Popup({ offset: 25 }).setHTML('I am a <b>marker</b>.');
 marker.setPopup(popup);
 ```
 
-That's it! You can view the full version [here](/public/os-data-hub-tutorials/dist/quick-start/mapbox-gl-js-adding-overlays.php).
+That's it! You can access the full version [here](/public/os-data-hub-tutorials/dist/quick-start/mapbox-gl-js-adding-overlays.php) (or view the [source code](/public/os-data-hub-tutorials/dist/quick-start/source-view.html#mapbox-gl-js-adding-overlays) if you prefer).

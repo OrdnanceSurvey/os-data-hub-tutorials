@@ -26,4 +26,4 @@ var geojsonLayer = omnivore.geojson('boundary.geojson')
 
 You will notice that the parser uses the on `'ready'` fire event to zoom the map to the extent of the polygon once all data has been loaded into the layer.
 
-That's it! You can view the full version [here](/public/os-data-hub-tutorials/dist/quick-start/leaflet-adding-geojson.php).
+That's it! You can access the full version [here](/public/os-data-hub-tutorials/dist/quick-start/leaflet-adding-geojson.php) (or view the [source code](/public/os-data-hub-tutorials/dist/quick-start/source-view.html#leaflet-adding-geojson) if you prefer).

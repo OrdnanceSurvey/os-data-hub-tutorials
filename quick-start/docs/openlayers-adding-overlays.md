@@ -101,7 +101,7 @@ Once we have added the overlays to the map &ndash; we can include some popups to
 
 Although it possible to define your own popups, we are going to make use the following [Github repo](https://github.com/walkermatt/ol-popup) which provides a basic functionality out-of-the-box.
 
-To use this library you will need to add the **ol-popup** CSS file to the header of your HTML document: 
+To use this library you will need to add the **ol-popup** CSS file to the header of your HTML document:
 
 ```html
 <link rel="stylesheet" href="https://unpkg.com/ol-popup@4.0.0/src/ol-popup.css" />
@@ -139,4 +139,4 @@ map.on('singleclick', function(evt) {
 });
 ```
 
-That's it! You can view the full version [here](/public/os-data-hub-tutorials/dist/quick-start/openlayers-adding-overlays.php).
+That's it! You can access the full version [here](/public/os-data-hub-tutorials/dist/quick-start/openlayers-adding-overlays.php) (or view the [source code](/public/os-data-hub-tutorials/dist/quick-start/source-view.html#openlayers-adding-overlays) if you prefer).

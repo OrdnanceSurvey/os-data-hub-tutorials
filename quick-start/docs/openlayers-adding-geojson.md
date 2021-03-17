@@ -31,4 +31,4 @@ geojsonLayer.once("change", e => {
 });
 ```
 
-That's it! You can view the full version [here](/public/os-data-hub-tutorials/dist/quick-start/openlayers-adding-geojson.php).
+That's it! You can access the full version [here](/public/os-data-hub-tutorials/dist/quick-start/openlayers-adding-geojson.php) (or view the [source code](/public/os-data-hub-tutorials/dist/quick-start/source-view.html#openlayers-adding-geojson) if you prefer).

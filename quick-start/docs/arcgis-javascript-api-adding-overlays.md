@@ -104,4 +104,4 @@ var pointGraphic = new Graphic({
 view.graphics.add(pointGraphic);
 ```
 
-That's it! You can view the full version [here](/public/os-data-hub-tutorials/dist/quick-start/arcgis-javascript-api-adding-overlays.php).
+That's it! You can access the full version [here](/public/os-data-hub-tutorials/dist/quick-start/arcgis-javascript-api-adding-overlays.php) (or view the [source code](/public/os-data-hub-tutorials/dist/quick-start/source-view.html#arcgis-javascript-api-adding-overlays) if you prefer).

@@ -25,7 +25,7 @@ map.on('load', function() {
         'type': 'geojson',
         'data': 'boundary.geojson'
     });
-);
+});
 ```
 
 Once the source has been added, we can add a layer to the map's style. This defines how data from a specified source will be styled:
@@ -43,7 +43,7 @@ map.on('load', function() {
             'fill-opacity': 0.2
         }
     });
-);
+});
 ```
 
 In this instance we have added a polygon (`'type': 'fill'`) with the appropriate paint properties.
@@ -79,7 +79,7 @@ The process is very similar to that which has been described above &ndash; we ju
 map.on('load', function() {
     fetch('boundary.geojson')
         .then(response => response.json())
-        .then((data) => {
+        .then(data => {
             map.addSource('boundary', {
                 'type': 'geojson',
                 'data': data
@@ -119,7 +119,7 @@ Because we now have access to the GeoJSON data source as a variable, we can use 
 map.on('load', function() {
     fetch('boundary.geojson')
         .then(response => response.json())
-        .then((data) => {
+        .then(data => {
             ...
             var bounds = geojsonExtent(data);
             map.fitBounds(bounds, {
@@ -139,4 +139,4 @@ In order to access this function it will be necessary to add the geojson-extent 
 <script src="https://api.mapbox.com/mapbox.js/plugins/geojson-extent/v0.0.1/geojson-extent.js"></script>
 ```
 
-That's it! You can view the full version [here](/public/os-data-hub-tutorials/dist/quick-start/mapbox-gl-js-adding-geojson.php).
+That's it! You can access the full version [here](/public/os-data-hub-tutorials/dist/quick-start/mapbox-gl-js-adding-geojson.php) (or view the [source code](/public/os-data-hub-tutorials/dist/quick-start/source-view.html#mapbox-gl-js-adding-geojson) if you prefer).
