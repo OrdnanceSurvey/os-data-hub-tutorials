@@ -1,6 +1,6 @@
 This step-by-step guide will show you how to overlay points, lines and polygons on an OS Maps API backdrop map in Mapbox GL JS.
 
-<p><iframe style="width:100%;height:400px;max-width:1200px;border:1px solid #f5f5f5;" src="/public/os-data-hub-tutorials/dist/quick-start/mapbox-gl-js-adding-overlays.php"></iframe></p>
+<p><iframe style="width:100%;height:400px;max-width:1200px;border:1px solid #f5f5f5;" src="https://labs.os.uk/public/os-data-hub-tutorials/dist/quick-start/mapbox-gl-js-adding-overlays.php?auth=" title="Adding Overlays"></iframe></p>
 
 ## Add point, line and polygon overlays
 
@@ -202,4 +202,4 @@ var popup = new mapboxgl.Popup({ offset: 25 }).setHTML('I am a <b>marker</b>.');
 marker.setPopup(popup);
 ```
 
-That's it! You can access the full version [here](/public/os-data-hub-tutorials/dist/quick-start/mapbox-gl-js-adding-overlays.php) (or view the [source code](/public/os-data-hub-tutorials/dist/quick-start/source-view.html#mapbox-gl-js-adding-overlays) if you prefer).
+That's it! You can access the full version [here](https://labs.os.uk/public/os-data-hub-tutorials/dist/quick-start/mapbox-gl-js-adding-overlays.php?auth=) (or view the [source code](https://labs.os.uk/public/os-data-hub-tutorials/dist/quick-start/source-view.html#mapbox-gl-js-adding-overlays) if you prefer).

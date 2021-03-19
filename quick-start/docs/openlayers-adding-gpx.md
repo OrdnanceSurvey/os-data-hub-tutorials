@@ -1,6 +1,6 @@
 This step-by-step guide will show you how to overlay a GPX file on an OS Maps API backdrop map in OpenLayers.
 
-<p><iframe style="width:100%;height:400px;max-width:1200px;border:1px solid #f5f5f5;" src="/public/os-data-hub-tutorials/dist/quick-start/openlayers-adding-gpx.php"></iframe></p>
+<p><iframe style="width:100%;height:400px;max-width:1200px;border:1px solid #f5f5f5;" src="https://labs.os.uk/public/os-data-hub-tutorials/dist/quick-start/openlayers-adding-gpx.php?auth=" title="Adding GPX"></iframe></p>
 
 ## Add GPX route
 
@@ -96,4 +96,4 @@ function selectStyle(feature) {
 }
 ```
 
-That's it! You can access the full version [here](/public/os-data-hub-tutorials/dist/quick-start/openlayers-adding-gpx.php) (or view the [source code](/public/os-data-hub-tutorials/dist/quick-start/source-view.html#openlayers-adding-gpx) if you prefer).
+That's it! You can access the full version [here](https://labs.os.uk/public/os-data-hub-tutorials/dist/quick-start/openlayers-adding-gpx.php?auth=) (or view the [source code](https://labs.os.uk/public/os-data-hub-tutorials/dist/quick-start/source-view.html#openlayers-adding-gpx) if you prefer).

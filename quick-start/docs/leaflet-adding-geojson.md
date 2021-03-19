@@ -1,6 +1,6 @@
 This step-by-step guide will show you how to overlay a GeoJSON file on an OS Maps API backdrop map in Leaflet.
 
-<p><iframe style="width:100%;height:400px;max-width:1200px;border:1px solid #f5f5f5;" src="/public/os-data-hub-tutorials/dist/quick-start/leaflet-adding-geojson.php"></iframe></p>
+<p><iframe style="width:100%;height:400px;max-width:1200px;border:1px solid #f5f5f5;" src="https://labs.os.uk/public/os-data-hub-tutorials/dist/quick-start/leaflet-adding-geojson.php?auth=" title="Adding GeoJSON"></iframe></p>
 
 ## Add GeoJSON features
 
@@ -26,4 +26,4 @@ var geojsonLayer = omnivore.geojson('boundary.geojson')
 
 You will notice that the parser uses the on `'ready'` fire event to zoom the map to the extent of the polygon once all data has been loaded into the layer.
 
-That's it! You can access the full version [here](/public/os-data-hub-tutorials/dist/quick-start/leaflet-adding-geojson.php) (or view the [source code](/public/os-data-hub-tutorials/dist/quick-start/source-view.html#leaflet-adding-geojson) if you prefer).
+That's it! You can access the full version [here](https://labs.os.uk/public/os-data-hub-tutorials/dist/quick-start/leaflet-adding-geojson.php?auth=) (or view the [source code](https://labs.os.uk/public/os-data-hub-tutorials/dist/quick-start/source-view.html#leaflet-adding-geojson) if you prefer).

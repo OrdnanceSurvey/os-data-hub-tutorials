@@ -1,6 +1,6 @@
 This step-by-step guide will show you how to overlay points, lines and polygons on an OS Maps API backdrop map in OpenLayers.
 
-<p><iframe style="width:100%;height:400px;max-width:1200px;border:1px solid #f5f5f5;" src="/public/os-data-hub-tutorials/dist/quick-start/openlayers-adding-overlays.php"></iframe></p>
+<p><iframe style="width:100%;height:400px;max-width:1200px;border:1px solid #f5f5f5;" src="https://labs.os.uk/public/os-data-hub-tutorials/dist/quick-start/openlayers-adding-overlays.php?auth=" title="Adding Overlays"></iframe></p>
 
 ## Add point, line and polygon overlays
 
@@ -139,4 +139,4 @@ map.on('singleclick', function(evt) {
 });
 ```
 
-That's it! You can access the full version [here](/public/os-data-hub-tutorials/dist/quick-start/openlayers-adding-overlays.php) (or view the [source code](/public/os-data-hub-tutorials/dist/quick-start/source-view.html#openlayers-adding-overlays) if you prefer).
+That's it! You can access the full version [here](https://labs.os.uk/public/os-data-hub-tutorials/dist/quick-start/openlayers-adding-overlays.php?auth=) (or view the [source code](https://labs.os.uk/public/os-data-hub-tutorials/dist/quick-start/source-view.html#openlayers-adding-overlays) if you prefer).

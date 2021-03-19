@@ -1,6 +1,6 @@
 This step-by-step guide will show you how to overlay a GPX file on an OS Maps API backdrop map in Leaflet.
 
-<p><iframe style="width:100%;height:400px;max-width:1200px;border:1px solid #f5f5f5;" src="/public/os-data-hub-tutorials/dist/quick-start/leaflet-adding-gpx.php"></iframe></p>
+<p><iframe style="width:100%;height:400px;max-width:1200px;border:1px solid #f5f5f5;" src="https://labs.os.uk/public/os-data-hub-tutorials/dist/quick-start/leaflet-adding-gpx.php?auth=" title="Adding GPX"></iframe></p>
 
 ## Add GPX route
 
@@ -87,4 +87,4 @@ var endMarker = L.marker(endPoint, { icon: endIcon }).addTo(map);
 
 NOTE: The start and end coordinates are passed to the `getLatLng()` function to ensure that the value only contains a latitude and longitude [in that order]. It is possible that the position might include elevation as an optional third value &ndash; which is unsupported when creating a Leaflet marker icon.
 
-That's it! You can access the full version [here](/public/os-data-hub-tutorials/dist/quick-start/leaflet-adding-gpx.php) (or view the [source code](/public/os-data-hub-tutorials/dist/quick-start/source-view.html#leaflet-adding-gpx) if you prefer).
+That's it! You can access the full version [here](https://labs.os.uk/public/os-data-hub-tutorials/dist/quick-start/leaflet-adding-gpx.php?auth=) (or view the [source code](https://labs.os.uk/public/os-data-hub-tutorials/dist/quick-start/source-view.html#leaflet-adding-gpx) if you prefer).
