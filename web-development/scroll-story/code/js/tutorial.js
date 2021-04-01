@@ -9,7 +9,7 @@ const endpoints = {
 
 // Initialize the map object.
 const map = new mapboxgl.Map({
-  container: "map",
+  container: "map-el",
   style: endpoints.vts + "/resources/styles?key=" + config.apikey,
   center: config.chapters[0].location.center,
   zoom: config.chapters[0].location.zoom,
