@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>OS Locate Address Tutorial</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" href="https://labs.os.uk/public/os-api-branding/v0.2.0/os-api-branding.css" />
+    <link href="https://unpkg.com/maplibre-gl@1.14.0/dist/maplibre-gl.css" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        #map {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .map-overlay {
+            font: 14px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+            position: absolute;
+            padding: 25px;
+        }
+
+        .map-overlay-inner {
+            background-color: #fff;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+            border-radius: 15px;
+            padding: 10px 25px;
+            max-width: 300px;
+
+        }
+
+        .map-overlay-inner div {
+            display: block;
+            margin-top: 8px;
+        }
+
+        .map-overlay-inner span {
+            /* font-weight: 600; */
+            margin-left: 15px;
+        }
+
+        .map-overlay-inner .message {
+            color: #c00;
+            display: none;
+        }
+
+        @keyframes c-inline-spinner-kf {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        #spinner {
+            visibility: hidden;
+        }
+
+        .c-inline-spinner,
+        .c-inline-spinner:before {
+            display: inline-block;
+            width: 11px;
+            height: 11px;
+            transform-origin: 50%;
+            border: 2px solid transparent;
+            border-color: #74a8d0 #74a8d0 transparent transparent;
+            border-radius: 50%;
+            content: "";
+            animation: linear c-inline-spinner-kf 900ms infinite;
+            position: relative;
+            vertical-align: inherit;
+            line-height: inherit;
+        }
+
+        .c-inline-spinner {
+            top: 3px;
+            margin: 0 15px;
+        }
+
+        .c-inline-spinner:before {
+            border-color: #74a8d0 #74a8d0 transparent transparent;
+            position: absolute;
+            left: -2px;
+            top: -2px;
+            border-style: solid;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        tr td:first-child {
+            font-weight: 800;
+            width: 30%;
+            vertical-align: top;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="map"></div>
+    <div class="map-overlay">
+        <div class="map-overlay-inner">
+            <h1>Locate Address</h1>
+            <p>This tutorial uses the OS Places API to geocode the address provided. We'll then zoom the map to the best matching
+                address and highlight the building.
+            </p>
+            <p>
+                <strong>Input the first line and postcode of an address you'd like to search:</strong>
+            </p>
+            <form id="the-form">
+                <input id="address-text" type="text" placeholder="Type here ...">
+                <input id="address-field" type="submit">
+                <i id="spinner" class="c-inline-spinner"></i>
+            </form>
+            <div class="retrieved">
+                <table>
+                    <tr>
+                        <td>Address:</td>
+                        <td id="address"></td>
+                    </tr>
+                    <tr>
+                        <td>UPRN:</td>
+                        <td id="uprn"></td>
+                    </tr>
+                    <tr>
+                        <td>TOID:</td>
+                        <td id="toid"></td>
+                    </tr>
+                    <tr>
+                        <td>Longitude:</td>
+                        <td id="longitude"></td>
+                    </tr>
+                    <tr>
+                        <td>Latitude:</td>
+                        <td id="latitude"></td>
+                    </tr>
+                </table>
+
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://labs.os.uk/public/os-api-branding/v0.2.0/os-api-branding.js"></script>
+    <script src="https://unpkg.com/maplibre-gl@1.14.0/dist/maplibre-gl.js"></script>
+    <script src="./js/main.js"></script>
+
+</body>
+
+</html>
