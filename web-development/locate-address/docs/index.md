@@ -36,7 +36,7 @@ We also set our endpoints.
 ```javascript
 // API Key in config object
 var config = {
-    apikey: prompt("Please input key", "<KEY HERE>")
+    apikey:  "<API KEY HERE>" 
 };
 
 // Endpoints

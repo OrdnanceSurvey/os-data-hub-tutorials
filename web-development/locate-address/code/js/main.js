@@ -1,6 +1,6 @@
 // API Key in config object
 var config = {
-    apikey: prompt("Add OS Data Hub Project API Key with access to the OS Vector Tile API and OS Places API.\n* Requires Public Sector or Premium plan")
+    apikey: "<API KEY HERE>" // a project on a Premium plan with OS Places API and OS Vector Tile API added
 };
 
 // Endpoints

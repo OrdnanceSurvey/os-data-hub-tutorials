@@ -38,7 +38,7 @@ We also set our endpoints.
 ```javascript
 // API Key in config object
 var config = {
-    apikey: prompt("Please input key", "<KEY HERE>")
+    apikey:  "<API KEY HERE>" // a project on a Premium plan with OS Places API and OS Vector Tile API added
 };
 
 // Endpoints
