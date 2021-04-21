@@ -4,7 +4,7 @@
   "description": "A NodeJS app to automatically download and extract Ordnance Survey open data from the OS Downloads API",
   "main": "app.js",
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": ">=0.21.1",
     "extract-zip": "^2.0.0"
   },
   "devDependencies": {},
