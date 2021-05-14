@@ -2,8 +2,6 @@ Maps convey information about space. Landforms are characterised by their topogr
 
 Shaded relief maps include this information about topography by emphasising the variation in land elevation, using shadows to indicate the position of hills and valleys. These maps include a "hillshade" layer, created by analysing a Digital Elevation Model, which is a dataset that contains information about land elevation at regularly-spaced points.
 
-_image of hillshade_
-
 This tutorial will walk through how to create a shaded relief map using Ordnance Survey's Terrain 50 dataset, available for free download via the OS Downloads API. We'll pick up where the [Automated Open Data Download](#) tutorial left off, bringing DEM data into QGIS, merging tiles, removing ocean areas, creating a hillshade image, then building a shaded relief map.
 
 ## Getting started
