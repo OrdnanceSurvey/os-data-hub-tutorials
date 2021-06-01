@@ -1,10 +1,10 @@
 # Locate Address
 
-Many web forms we use online require us to provide an address - for billing or shipping details, routing, to get a ride and so on. It can be quite tricky for developers to create web forms that capture this address accurately. What happens if a road name is misspelled, or in all lowercase? What if there is another road with the same name in a nearby town? Capturing and verifying addresses is a difficult problem to solve. 
+Many web forms we use online require us to provide an address - for billing or shipping details, routing, to get a ride and so on. It can be quite tricky for developers to create web forms that capture this address accurately. What happens if a road name is misspelled, or in all lowercase? What if there is another road with the same name in a nearby town? Capturing and verifying addresses is a difficult problem to solve.
 
-The OS Places API is a solution to that problem. With the API, developers get on-demand access to AddressBase Premium, OS's flagship address database. A variety of query options enable devs to match and cleanse addresses based on text, postcode, UPRN and location. 
+The OS Places API is a solution to that problem. With the API, developers get on-demand access to AddressBase Premium, OS's flagship address database. A variety of query options enable devs to match and cleanse addresses based on text, postcode, UPRN and location.
 
-In this tutorial we let a user type in an address to look up, query the OS Places API, and fly to the location using the Vector Tile API and MapLibre GL JS. We'll describe key code snippets here - to follow along download the directory here, or clone the os-data-hub-tutorials repository. 
+In this tutorial we let a user type in an address to look up, query the OS Places API, and fly to the location using the Vector Tile API and MapLibre GL JS.
 
 ![Locate Address interface](./media/locate-address-image.png)
 
@@ -14,18 +14,18 @@ We use data from the [OS Places API](https://osdatahub.os.uk/docs/places/overvie
 
 ## The HTML and CSS
 
-Overall our HTML document is quite simple. We have a `<div>` element with `id="map"` - this will occupy the entire window and hold our rendered vector tile map. We also have a `<div class="map-overlay">` element, which contains some helper text, our simple form and submit button, and a table where we will visualise the metadata associated with a particular address. 
+Overall our HTML document is quite simple. We have a `<div>` element with `id="map"` - this will occupy the entire window and hold our rendered vector tile map. We also have a `<div class="map-overlay">` element, which contains some helper text, our simple form and submit button, and a table where we will visualise the metadata associated with a particular address.
 
-The CSS sets widths, colors and positions, and styles an animated spinner we'll use as visual feedback while the API request is being processed. 
+The CSS sets widths, colors and positions, and styles an animated spinner we'll use as visual feedback while the API request is being processed.
 
 We also load JavaScript files including an OS branding script and MapLibre GL.
 
 ## The JavaScript
 
-In `js/main.js`, we have the code required to: 
-1. Instantiate an interactive vector tile basemap with data fetched from the OS Vector Tile API. 
-2. Query the OS Places API with a text string - the API will return the closest matching addresses and metadata, in order of relevance. 
-3. Animate the camera to fly to the address fetched, and highlight the specific building by TOID. 
+In `js/main.js`, we have the code required to:
+1. Instantiate an interactive vector tile basemap with data fetched from the OS Vector Tile API.
+2. Query the OS Places API with a text string - the API will return the closest matching addresses and metadata, in order of relevance.
+3. Animate the camera to fly to the address fetched, and highlight the specific building by TOID.
 
 Let's look at the code required for each step:
 
@@ -109,7 +109,7 @@ map.on("style.load", function () {
         }
     });
 
-    // Here we add the highlighted layer, with all buildings filtered out. 
+    // Here we add the highlighted layer, with all buildings filtered out.
     // We'll set the filter to our searched buildings when we actually
     // call the OS Places API and  have a TOID to highlight.
     map.addLayer({
@@ -139,11 +139,11 @@ map.on("style.load", function () {
 
 ### 2. Querying the OS Places API
 
-Our next step is to write the code we'll need to query the OS Places API when a user inputs an address to look up and clicks "Submit". 
+Our next step is to write the code we'll need to query the OS Places API when a user inputs an address to look up and clicks "Submit".
 
-We're going to go through this based on the sequence of events that happens when a user clicks "Submit". Because in JavaScript functions are hoisted, meaning "the variable and function declarations are put into memory during the _compile_ phase" - then the functions are called and the code is executed ([MDN]((https://developer.mozilla.org/en-US/docs/Glossary/Hoisting)). 
+We're going to go through this based on the sequence of events that happens when a user clicks "Submit". Because in JavaScript functions are hoisted, meaning "the variable and function declarations are put into memory during the _compile_ phase" - then the functions are called and the code is executed ([MDN]((https://developer.mozilla.org/en-US/docs/Glossary/Hoisting)).
 
-#### "Submit" 
+#### "Submit"
 
 We have a form element defined in the HTML - this provides a text box where a user can type an address, and a submit button for them to press. We'll attach a `submit` event listener to the `<form>` element - this means each time "Submit" is pressed and a `submit` event fires, `lookUpAddress` will be called.
 
@@ -152,17 +152,17 @@ var form = document.getElementById("the-form");
 form.addEventListener('submit', lookUpAddress);
 ```
 
-So what happens in `lookUpAddress();`? Great question. 
+So what happens in `lookUpAddress();`? Great question.
 1. We start a spinner in the interface. This is important so users know something is happening in the background, and don't get impatient or worried that the code isn't working. We also clear out any existing data.
 2. We grab the text value provided from the `'address-text'` element - i.e. the text input form field.
-3. We'll then call `fetchAddressFromPlaces(placesResponse);`, which will call the OS Places API and return the parsed JSON response. 
-4. With the result in hand, we'll update the info box, stop the spinner, trigger an animation to fly to the address location, and highlight the building represented in the address as referenced by the Topographic Identifier, or TOID. 
+3. We'll then call `fetchAddressFromPlaces(placesResponse);`, which will call the OS Places API and return the parsed JSON response.
+4. With the result in hand, we'll update the info box, stop the spinner, trigger an animation to fly to the address location, and highlight the building represented in the address as referenced by the Topographic Identifier, or TOID.
 
-This is a nice way to think of it on an abstract, high level - but we want to go through each of these functions one by one. 
+This is a nice way to think of it on an abstract, high level - but we want to go through each of these functions one by one.
 
 #### `fetchAddressFromPlaces()`
 
-This function accepts the `address` string retrieved from the form input field - with this we construct a URL with `query`, our desired reference system (`output_srs`), a `maxresults` limit of 1 and the API `key` as parameters. 
+This function accepts the `address` string retrieved from the form input field - with this we construct a URL with `query`, our desired reference system (`output_srs`), a `maxresults` limit of 1 and the API `key` as parameters.
 
 We then use the JavaScript `fetch` API to send an HTTP request, and parse the response with the `.json()` method. The function simply returns the parsed JSON exactly as received from the API endpoint.
 
@@ -178,10 +178,10 @@ async function fetchAddressFromPlaces(address) {
 }
 ```
 
-> NOTE: Here we're simply fetching the first item the OS Places API matches with the query string. In production it might require a bit more user input or other analysis to make sure you actually do have the right address. 
+> NOTE: Here we're simply fetching the first item the OS Places API matches with the query string. In production it might require a bit more user input or other analysis to make sure you actually do have the right address.
 #### Update info box
 
-We'll place values from the retrieved JSON in the information box included in the HTML structure. This is as simple as finding the relevant attributes in the JSON response and setting the `innerText` of the respective HTML elements. 
+We'll place values from the retrieved JSON in the information box included in the HTML structure. This is as simple as finding the relevant attributes in the JSON response and setting the `innerText` of the respective HTML elements.
 
 ```javascript
 function updateInfoBox(placesResponse) {
@@ -204,12 +204,12 @@ function updateInfoBox(placesResponse) {
 
 #### `flyToCoords(coords)`
 
-Next we want to leverage MapLibre GL's animation capabilities - a powerful feature of vector tile maps. Turns out this is pretty simple - we even added a little `rotateTo` animation so the camera flies around the building when the fly-to finishes: 
+Next we want to leverage MapLibre GL's animation capabilities - a powerful feature of vector tile maps. Turns out this is pretty simple - we even added a little `rotateTo` animation so the camera flies around the building when the fly-to finishes:
 
 ```javascript
 async function flyToCoords(coords) {
 
-    // @TIM TODO does this need to be set each function call, or just once? 
+    // @TIM TODO does this need to be set each function call, or just once?
     map.once('moveend', function () {
         map.rotateTo(0.0, { duration: 7000 });
     });
@@ -225,9 +225,9 @@ async function flyToCoords(coords) {
 
 #### `highlightTOID(toidArray)`
 
-Our last bit of functionality is to visually highlight the 3D building at the address we've looked up. Our response from the OS Places API includes the Topographic Identifier, or TOID, of the building located at the address. TOIDs also are included with each vector feature provided by the Vector Tile API. This means we can easily apply styling to individual features. 
+Our last bit of functionality is to visually highlight the 3D building at the address we've looked up. Our response from the OS Places API includes the Topographic Identifier, or TOID, of the building located at the address. TOIDs also are included with each vector feature provided by the Vector Tile API. This means we can easily apply styling to individual features.
 
-To do this we create another duplicate layer of our 3D buildings, and filter out all the TOIDs besides the one we want to highlight. All other styling parameters are the same, so the highlighted building will behave like the rest of them - it will just be `#FF1F5B` - a vivid pink. 
+To do this we create another duplicate layer of our 3D buildings, and filter out all the TOIDs besides the one we want to highlight. All other styling parameters are the same, so the highlighted building will behave like the rest of them - it will just be `#FF1F5B` - a vivid pink.
 
 ```javascript
 function highlightTOID(toid) {
@@ -240,4 +240,4 @@ function highlightTOID(toid) {
 
 ### Conclusion
 
-And that's it! We've built a simple interface with a vector tile map and a form element, queried the OS Places API, and visualised the result on a map. Feel free to adapt this code as you like - one idea is to give users visual validation of their addresses, as it is a best practice to confirm that the right address has been input at the point of capture. 
+And that's it! We've built a simple interface with a vector tile map and a form element, queried the OS Places API, and visualised the result on a map. Feel free to adapt this code as you like - one idea is to give users visual validation of their addresses, as it is a best practice to confirm that the right address has been input at the point of capture.
