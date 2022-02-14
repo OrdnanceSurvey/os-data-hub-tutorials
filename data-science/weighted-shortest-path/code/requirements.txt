@@ -21,7 +21,7 @@ geopandas==0.7.0
 idna==2.9
 iniconfig==1.1.1
 ipykernel==5.3.0
-ipython==7.15.0
+ipython==7.16.3
 ipython-genutils==0.2.0
 ipywidgets==7.5.1
 isort==5.6.4
