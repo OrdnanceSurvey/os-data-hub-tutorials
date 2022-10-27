@@ -133,7 +133,7 @@ Let's look at the code.
 // First we pull the types of features to query from the dropdown input element
 let featureTypeToFind = $("#feature-type-select span").text();
 let typeName = getFeatureTypeToFind(featureTypeToFind);
-/*      ^^ This function just returns the Features API-compliant string to search        
+/*      ^^ This function just returns the Features API-compliant string to search
             based on the natural language string the user selected */
 
 // {Turf.js} Takes the centre point coordinates and calculates a circular polygon
@@ -149,7 +149,7 @@ var coords = circle.geometry.coordinates[0].join(" ");
 var xml = `<ogc:Filter>
       <ogc:Intersects>
           <ogc:PropertyName>SHAPE</ogc:PropertyName>
-          <gml:Polygon srsName="urn:ogc:def:crs:EPSG::4326">
+          <gml:Polygon srsName="EPSG:4326">
               <gml:outerBoundaryIs>
                   <gml:LinearRing>
                       <gml:coordinates>${coords}</gml:coordinates>
@@ -166,7 +166,6 @@ let wfsParams = {
   version: "2.0.0",
   typeNames: typeName,
   outputFormat: "GEOJSON",
-  srsName: "urn:ogc:def:crs:EPSG::4326",
   filter: xml,
   count: 100,
   startIndex: 0
@@ -190,7 +189,7 @@ function getUrl(params) {
   return endpoints.features + "?" + encodedParameters;
 }
 // An example output of this function call would be:
-// https://osdatahubapi.os.uk/OSFeaturesAPI/wfs/v1?key=INSERT_API_KEY&service=WFS&request=GetFeature&version=2.0.0&typeNames=Zoomstack_Greenspace&outputFormat=GEOJSON&srsName=urn:ogc:def:crs:EPSG::4326&filter=%3Cogc:Filter%3E%3Cogc:Intersects%3E%3Cogc:PropertyName%3ESHAPE%3C/ogc:PropertyName%3E%3Cgml:Polygon%20srsName=%22urn:ogc:def:crs:EPSG::4326%22%3E%3Cgml:outerBoundaryIs%3E%3Cgml:LinearRing%3E%3Cgml:coordinates%3E-0.136771,51.51367520363725%20-0.1405111456338577,51.513368708192694%20-0.14399626401253374,51.51247012090285%20-0.14698874577786938,51.51104071147652%20-0.149284620111411,51.50917793615162%20-0.15072746521541214,51.507008784324505%20-0.15121905792711335,51.50468111255005%20-0.15072603948008415,51.50235355967132%20-0.14928215066533848,51.500184732673425%20-0.1469858943070869,51.4983224010735%20-0.14399379456633463,51.49689343537215%20-0.1405097198984031,51.49599517291155%20-0.136771,51.49568879636275%20-0.13303228010159693,51.49599517291155%20-0.12954820543366538,51.49689343537215%20-0.12655610569291312,51.4983224010735%20-0.12425984933466153,51.500184732673425%20-0.12281596051991586,51.50235355967132%20-0.12232294207288667,51.50468111255005%20-0.12281453478458788,51.507008784324505%20-0.12425737988858902,51.50917793615162%20-0.12655325422213062,51.51104071147652%20-0.12954573598746627,51.51247012090285%20-0.13303085436614234,51.513368708192694%20-0.136771,51.51367520363725%3C/gml:coordinates%3E%3C/gml:LinearRing%3E%3C/gml:outerBoundaryIs%3E%3C/gml:Polygon%3E%3C/ogc:Intersects%3E%3C/ogc:Filter%3E&count=100&startIndex=0
+// https://osdatahubapi.os.uk/OSFeaturesAPI/wfs/v1?key=INSERT_API_KEY&service=WFS&request=GetFeature&version=2.0.0&typeNames=Zoomstack_Greenspace&outputFormat=GEOJSON&srsName=EPSG:4326&filter=%3Cogc:Filter%3E%3Cogc:Intersects%3E%3Cogc:PropertyName%3ESHAPE%3C/ogc:PropertyName%3E%3Cgml:Polygon%20srsName=%22EPSG:4326%22%3E%3Cgml:outerBoundaryIs%3E%3Cgml:LinearRing%3E%3Cgml:coordinates%3E-0.136771,51.51367520363725%20-0.1405111456338577,51.513368708192694%20-0.14399626401253374,51.51247012090285%20-0.14698874577786938,51.51104071147652%20-0.149284620111411,51.50917793615162%20-0.15072746521541214,51.507008784324505%20-0.15121905792711335,51.50468111255005%20-0.15072603948008415,51.50235355967132%20-0.14928215066533848,51.500184732673425%20-0.1469858943070869,51.4983224010735%20-0.14399379456633463,51.49689343537215%20-0.1405097198984031,51.49599517291155%20-0.136771,51.49568879636275%20-0.13303228010159693,51.49599517291155%20-0.12954820543366538,51.49689343537215%20-0.12655610569291312,51.4983224010735%20-0.12425984933466153,51.500184732673425%20-0.12281596051991586,51.50235355967132%20-0.12232294207288667,51.50468111255005%20-0.12281453478458788,51.507008784324505%20-0.12425737988858902,51.50917793615162%20-0.12655325422213062,51.51104071147652%20-0.12954573598746627,51.51247012090285%20-0.13303085436614234,51.513368708192694%20-0.136771,51.51367520363725%3C/gml:coordinates%3E%3C/gml:LinearRing%3E%3C/gml:outerBoundaryIs%3E%3C/gml:Polygon%3E%3C/ogc:Intersects%3E%3C/ogc:Filter%3E&count=100&startIndex=0
 ```
 
 The OS Features API returns up to 100 features per transaction. In some cases there may be more than 100 features within 1km of the location to find, meaning we need to fetch all features that match query parameters, then find the ones nearest the point we're searching for in the browser.

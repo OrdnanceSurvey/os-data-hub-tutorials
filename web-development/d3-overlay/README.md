@@ -1,4 +1,4 @@
-# Title
+# D3 Overlay
 
 In this tutorial, we'll learn how to use D3.js to add an overlay of geographic features to an interactive Mapbox GL map. Our goal is to create a smooth-panning and zooming user experience, and to gain access to the amazing capabilities of D3.
 
@@ -177,7 +177,7 @@ let xmlFilter = `
     <ogc:Filter>
         <ogc:Within>
         <ogc:PropertyName>SHAPE</ogc:PropertyName>
-        <gml:Polygon srsName="urn:ogc:def:crs:EPSG::4326">
+        <gml:Polygon srsName="EPSG:4326">
             <gml:outerBoundaryIs>
             <gml:LinearRing>
                 <gml:coordinates>${coordsString}</gml:coordinates>
@@ -196,7 +196,6 @@ var params = {
   request: "GetFeature",
   version: "2.0.0",
   outputFormat: "GEOJSON",
-  srsName: "urn:ogc:def:crs:EPSG::4326",
   count: 100,
   startIndex: 0
 };

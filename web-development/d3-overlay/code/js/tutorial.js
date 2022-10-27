@@ -91,7 +91,7 @@ map.on("load", async function () {
         <ogc:Filter>
             <ogc:Within>
             <ogc:PropertyName>SHAPE</ogc:PropertyName>
-            <gml:Polygon srsName="urn:ogc:def:crs:EPSG::4326">
+            <gml:Polygon srsName="EPSG:4326">
                 <gml:outerBoundaryIs>
                 <gml:LinearRing>
                     <gml:coordinates>${coordsString}</gml:coordinates>
@@ -110,7 +110,6 @@ map.on("load", async function () {
     request: "GetFeature",
     version: "2.0.0",
     outputFormat: "GEOJSON",
-    srsName: "urn:ogc:def:crs:EPSG::4326",
     count: 100,
     startIndex: 0
   };

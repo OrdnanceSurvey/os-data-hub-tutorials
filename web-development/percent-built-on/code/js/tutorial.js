@@ -187,7 +187,7 @@ async function getIntersectingFeatures(polygon) {
                 <And>
                 <ogc:Intersects>
                     <ogc:PropertyName>SHAPE</ogc:PropertyName>
-                    <gml:Polygon srsName="urn:ogc:def:crs:EPSG::4326">
+                    <gml:Polygon srsName="EPSG:4326">
                     <gml:outerBoundaryIs>
                         <gml:LinearRing>
                         <gml:coordinates>${coords}</gml:coordinates>
@@ -210,7 +210,6 @@ async function getIntersectingFeatures(polygon) {
     version: "2.0.0",
     typeNames: "Topography_TopographicArea",
     outputFormat: "GEOJSON",
-    srsName: "urn:ogc:def:crs:EPSG::4326",
     filter: xml,
     count: 100,
     startIndex: 0
@@ -319,9 +318,9 @@ function removeSpinner(outcome) {
     $(".osel-toast-notification").text("Success!");
   } else if (outcome == 'failure') {
     $(".osel-toast-notification").addClass("error");
-    $(".osel-toast-notification").text("No intersecting features found!"); 
+    $(".osel-toast-notification").text("No intersecting features found!");
   }
-  
+
 
   setTimeout(function () {
     $(".osel-toast-notification").fadeOut(function () {

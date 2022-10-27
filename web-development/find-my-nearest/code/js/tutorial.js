@@ -85,7 +85,7 @@ function fetchNearestFeatures(e) {
   var xml = `<ogc:Filter>
         <ogc:Intersects>
             <ogc:PropertyName>SHAPE</ogc:PropertyName>
-            <gml:Polygon srsName="urn:ogc:def:crs:EPSG::4326">
+            <gml:Polygon srsName="EPSG:4326">
                 <gml:outerBoundaryIs>
                     <gml:LinearRing>
                         <gml:coordinates>${coords}</gml:coordinates>
@@ -103,7 +103,6 @@ function fetchNearestFeatures(e) {
     version: "2.0.0",
     typeNames: typeName,
     outputFormat: "GEOJSON",
-    srsName: "urn:ogc:def:crs:EPSG::4326",
     filter: xml,
     count: 100,
     startIndex: 0
