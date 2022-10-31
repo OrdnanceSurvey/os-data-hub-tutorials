@@ -94,7 +94,7 @@ NOTE: The `geojsonExtent()` function uses [geojson-extent](https://github.com/ma
 In order to access this function it will be necessary to add the geojson-extent JavaScript file after the existing script tags (at the top of your HTML document):
 
 ```html
-<script src="https://api.mapbox.com/mapbox.js/plugins/geojson-extent/v0.0.1/geojson-extent.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@mapbox/geojson-extent@1.0.1/geojson-extent.js"></script>
 ```
 
 ## Add start + end points
