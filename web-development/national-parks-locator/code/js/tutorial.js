@@ -66,17 +66,16 @@ var nationalParks = omnivore
 
       // First create the HTML element that will represent the park
       let element = `<li class="layer" data-np-id="${nationalPark.properties.id}">
-                                <div class="layer-element icon" data-type="list-item" data-id="${nationalPark.properties.id}">
-                                    <div class="label">
-                                        <img class='np-arrow' src='./img/np-arrow.png' />
-                                        <span class='np-name'>${nationalPark.properties.name}
-                                            </span>
-                                            <a href="${nationalPark.properties.url}" target="_blank">
-                                                <i class="material-icons" onClick="this.href='${nationalPark.properties.url}'" aria-label="">launch</i>
-                                            </a>
-                                    </div>
-                                </div>
-                            </li>`;
+                          <div class="layer-element icon" data-type="list-item" data-id="${nationalPark.properties.id}">
+                              <div class="label">
+                                  <img class='np-arrow' src='./img/np-arrow.png' />
+                                  <span class='np-name'>${nationalPark.properties.name}</span>
+                                  <a href="${nationalPark.properties.url}" target="_blank">
+                                      <i class="material-icons" onClick="this.href='${nationalPark.properties.url}'" aria-label="">launch</i>
+                                  </a>
+                              </div>
+                          </div>
+                      </li>`;
 
       element = $.parseHTML(element);
 

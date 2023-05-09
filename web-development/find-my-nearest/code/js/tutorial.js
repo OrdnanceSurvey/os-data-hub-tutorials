@@ -95,6 +95,8 @@ function fetchNearestFeatures(e) {
         </ogc:Intersects>
     </ogc:Filter>`;
 
+  xml = xml.replace(/ +\</g, '<');
+
   // Define parameters object.
   let wfsParams = {
     key: config.apikey,

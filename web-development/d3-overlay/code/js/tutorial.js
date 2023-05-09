@@ -87,19 +87,20 @@ map.on("load", async function () {
   // Now, an XML filter for our Features API calls
   let coordsString = turf.flip(camden.features[0]).coordinates[0].join(" ");
 
-  let xmlFilter = `
-        <ogc:Filter>
-            <ogc:Within>
-            <ogc:PropertyName>SHAPE</ogc:PropertyName>
-            <gml:Polygon srsName="EPSG:4326">
-                <gml:outerBoundaryIs>
-                <gml:LinearRing>
-                    <gml:coordinates>${coordsString}</gml:coordinates>
-                </gml:LinearRing>
-                </gml:outerBoundaryIs>
-            </gml:Polygon>
-            </ogc:Within>
-        </ogc:Filter>`;
+  let xmlFilter = `<ogc:Filter>
+        <ogc:Within>
+        <ogc:PropertyName>SHAPE</ogc:PropertyName>
+        <gml:Polygon srsName="EPSG:4326">
+            <gml:outerBoundaryIs>
+            <gml:LinearRing>
+                <gml:coordinates>${coordsString}</gml:coordinates>
+            </gml:LinearRing>
+            </gml:outerBoundaryIs>
+        </gml:Polygon>
+        </ogc:Within>
+    </ogc:Filter>`;
+
+  xmlFilter = xmlFilter.replace(/ +\</g, '<');
 
   // The parameters
   var params = {
@@ -154,15 +155,15 @@ map.on("load", async function () {
           return "black";
       }
     })
-    .on("mouseover", (d) => {
+    .on("mouseover", (evt, data) => {
       div.style("display", "block").style("opacity", 1);
 
       div
-        .html(`<h3>${d.properties.Name}</h3>`)
-        .style("left", d3.event.pageX + 15 + "px")
-        .style("top", d3.event.pageY - 15 + "px");
+        .html(`<h3>${data.properties.Name}</h3>`)
+        .style("left", evt.pageX + 15 + "px")
+        .style("top", evt.pageY - 15 + "px");
     })
-    .on("mouseout", (d) => {
+    .on("mouseout", (evt, data) => {
       div
         .transition()
         .duration(200)
