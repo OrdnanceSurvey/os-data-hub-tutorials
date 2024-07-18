@@ -14,7 +14,7 @@ decorator==4.4.2
 defusedxml==0.6.0
 descartes==1.1.0
 entrypoints==0.3
-Fiona==1.8.13.post1
+Fiona==1.10b2.post1
 folium==0.11.0
 geojson==2.5.0
 geopandas==0.7.0
