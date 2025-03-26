@@ -1,3 +1,8 @@
+> [!IMPORTANT]  
+> This repository is no longer actively maintained.
+> 
+> Please refer to [More than Maps](https://docs.os.uk/more-than-maps) (our new self-serve platform that provides a one-stop shop for all your technical geospatial support).
+
 # OS Data Hub API Tutorials
 
 ## Data Science: Price Paid Spatial Distribution
