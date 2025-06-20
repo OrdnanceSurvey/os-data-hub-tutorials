@@ -14,7 +14,7 @@ decorator==4.4.2
 defusedxml==0.6.0
 descartes==1.1.0
 entrypoints==0.3
-Fiona==1.8.13.post1
+Fiona==1.10b2.post1
 folium==0.11.0
 geojson==2.5.0
 geopandas==0.7.0
@@ -74,7 +74,7 @@ six==1.15.0
 terminado==0.8.3
 testpath==0.4.4
 toml==0.10.2
-tornado==6.4.1
+tornado==6.4.2
 traitlets==4.3.3
 urllib3==1.26.19
 wcwidth==0.2.4
@@ -83,5 +83,6 @@ widgetsnbextension==3.5.1
 wrapt==1.12.1
 jupyter-server>=2.14.1 # not directly required, pinned by Snyk to avoid a vulnerability
 setuptools>=78.1.1 # not directly required, pinned by Snyk to avoid a vulnerability
+setuptools>=70.0.0 # not directly required, pinned by Snyk to avoid a vulnerability
 anyio>=4.4.0 # not directly required, pinned by Snyk to avoid a vulnerability
 zipp>=3.19.1 # not directly required, pinned by Snyk to avoid a vulnerability
