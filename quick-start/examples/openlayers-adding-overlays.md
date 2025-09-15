@@ -1,12 +1,12 @@
-# Adding overlays
+## Adding overlays
 
 This step-by-step guide will show you how to overlay points, lines and polygons on an OS Maps API backdrop map in OpenLayers.
 
-## Add point, line and polygon overlays
+### Add point, line and polygon overlays
 
 Using the [Display a basic ZXY map (EPSG:3857)](https://labs.os.uk/public/os-data-hub-examples/os-maps-api/zxy-3857-basic-map#openlayers) example as a template, we can add a point to the map as follows:
 
-```js
+```text
 const layerPoint = new ol.layer.Vector({
     source: new ol.source.Vector({
         features: [
@@ -36,7 +36,7 @@ Here we are defining a new vector layer and source. We are then creating a new P
 
 Alternatively, we can create and add a LineString from an array of points:
 
-```js
+```text
 const layerLine = new ol.layer.Vector({
     source: new ol.source.Vector({
         features: [
@@ -63,7 +63,7 @@ map.addLayer(layerLine);
 
 Creating and adding a Polygon from an array of points is just as easy:
 
-```js
+```text
 const layerPolygon = new ol.layer.Vector({
     source: new ol.source.Vector({
         features: [
@@ -94,13 +94,13 @@ const layerPolygon = new ol.layer.Vector({
 map.addLayer(layerPolygon);
 ```
 
-## Add popups
+### Add popups
 
-Once we have added the overlays to the map &ndash; we can include some popups to show information for the newly created features.
+Once we have added the overlays to the map – we can include some popups to show information for the newly created features.
 
 This is achieved by adding a `<div>` element to the HTML document:
 
-```html
+```text
 <div id="popup" class="ol-popup">
     <a href="#" id="popup-closer" class="ol-popup-closer"></a>
     <div id="popup-content"></div>
@@ -109,7 +109,7 @@ This is achieved by adding a `<div>` element to the HTML document:
 
 ... along with a `<style>` tag to define the associated style information (CSS) for the element:
 
-```html
+```text
 <style>
     .ol-popup {
         position: absolute;
@@ -120,6 +120,7 @@ This is achieved by adding a `<div>` element to the HTML document:
         border: 1px solid #ccc;
         bottom: 12px;
         left: -50px;
+        cursor: auto;
     }
     .ol-popup:after, .ol-popup:before {
         top: 100%;
@@ -154,7 +155,7 @@ This is achieved by adding a `<div>` element to the HTML document:
         content: "✖";
     }
     #popup-content {
-        font: 12px/1.5 "Helvetica Neue", Arial, Helvetica, sans-serif;
+        font: 12px/1.5 Arial, Helvetica, sans-serif;
         margin-right: 10px;
         max-height: 200px;
         min-width: max-content;
@@ -165,7 +166,7 @@ This is achieved by adding a `<div>` element to the HTML document:
 
 We will then need to include some variables for the elements that make up the popup; an overlay to anchor the popup to the map; and a click handler to hide the popup:
 
-```js
+```text
 const container = document.getElementById('popup');
 const content = document.getElementById('popup-content');
 const closer = document.getElementById('popup-closer');
@@ -189,9 +190,9 @@ closer.onclick = function () {
 
 Note: The popup overlay is added to the map using `map.addOverlay(overlay);`.
 
-The `'singleclick'` event listener is subsequently used to determine if any overlay features exist where the user has clicked on the map &ndash; and if they do, display a popup with the specified HTML content:
+The `'singleclick'` event listener is subsequently used to determine if any overlay features exist where the user has clicked on the map – and if they do, display a popup with the specified HTML content:
 
-```js
+```text
 map.on('singleclick', function(evt) {
     overlay.setPosition(undefined);
     closer.blur();
@@ -209,4 +210,4 @@ map.on('singleclick', function(evt) {
 });
 ```
 
-That's it! You can access the full version of the source code [here](https://labs.os.uk/public/os-data-hub-tutorials/code-playground/#quick-start-adding-overlays-openlayers).
+That's it! You can access the full version of the source code [here](https://labs.os.uk/public/os-api-resources/code-playground/quick-start/openlayers-adding-overlays).

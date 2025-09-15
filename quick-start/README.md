@@ -6,10 +6,10 @@ These step-by-step guides will show you how to overlay points, lines and polygon
 
 ![Adding overlays](./media/adding-overlays.jpg)
 
-- [MapLibre GL JS](./examples/maplibre-gl-js-adding-overlays.md)
+- [MapLibre GL JS](./examples/maplibre-gl-adding-overlays.md)
 - [Leaflet](./examples/leaflet-adding-overlays.md)
 - [OpenLayers](./examples/openlayers-adding-overlays.md)
-- [ArcGIS API for JavaScript](./examples/arcgis-javascript-api-adding-overlays.md)
+- [ArcGIS Maps SDK for JavaScript](./examples/esri-js-adding-overlays.md)
 
 ## Adding a GeoJSON file
 
@@ -17,10 +17,10 @@ These step-by-step guides will show you how to overlay a GeoJSON file on an OS M
 
 ![Adding a GeoJSON file](./media/adding-geojson.jpg)
 
-- [MapLibre GL JS](./examples/maplibre-gl-js-adding-geojson.md)
+- [MapLibre GL JS](./examples/maplibre-gl-adding-geojson.md)
 - [Leaflet](./examples/leaflet-adding-geojson.md)
 - [OpenLayers](./examples/openlayers-adding-geojson.md)
-- [ArcGIS API for JavaScript](./examples/arcgis-javascript-api-adding-geojson.md)
+- [ArcGIS Maps SDK for JavaScript](./examples/esri-js-adding-geojson.md)
 
 ## Adding a GPX file
 
@@ -28,6 +28,6 @@ These step-by-step guides will show you how to overlay a GPX file on an OS Maps 
 
 ![Adding a GeoJSON file](./media/adding-gpx.jpg)
 
-- [MapLibre GL JS](./examples/maplibre-gl-js-adding-gpx.md)
+- [MapLibre GL JS](./examples/maplibre-gl-adding-gpx.md)
 - [Leaflet](./examples/leaflet-adding-gpx.md)
 - [OpenLayers](./examples/openlayers-adding-gpx.md)
