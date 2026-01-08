@@ -1,7 +1,7 @@
 > [!IMPORTANT]  
 > This repository is no longer actively maintained.
 > 
-> Please refer to [More than Maps](https://docs.os.uk/more-than-maps) (our new self-serve platform that provides a one-stop shop for all your technical geospatial support).
+> Please refer to [More than Maps](https://docs.os.uk/more-than-maps) (our dedicated hub for building skills, discovering best practices, and unlocking the potential of geospatial data).
 
 # OS Data Hub API Tutorials
 
