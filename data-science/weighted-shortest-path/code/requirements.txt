@@ -17,7 +17,7 @@ entrypoints==0.3
 Fiona==1.10b2.post1
 folium==0.11.0
 geojson==2.5.0
-geopandas==0.7.0
+geopandas==1.1.2
 idna==3.7
 iniconfig==1.1.1
 ipykernel==5.3.0
